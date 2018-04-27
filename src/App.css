@@ -1,0 +1,15 @@
+.form-paper{
+  width: 25%;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.sign-btn{
+  margin: 40px 20px;
+  width: 40%;
+}
+
+.social-sign-btn{
+  margin: 0 10px 40px 10px;
+  width: 40%;
+}
