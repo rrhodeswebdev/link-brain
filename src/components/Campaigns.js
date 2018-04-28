@@ -5,7 +5,6 @@ import NavBar from './NavBar';
 function Campaigns() {
   return(
     <div>
-      <NavBar />
       <CampaignList />
     </div>
   )

@@ -1,12 +1,14 @@
 import React from 'react';
 import NavBar from './NavBar';
-import ReportList from './ReportList';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-function Dashboard() {
+import Campaigns from './Campaigns';
+
+function Dashboard({match}) {
   return(
     <div>
       <NavBar />
-      <ReportList />
+      <Route exact path={`${match.url}/campaigns`} component={Campaigns} />
     </div>
   )
 }
