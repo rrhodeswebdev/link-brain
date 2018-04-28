@@ -15,11 +15,17 @@
 }
 
 .campaign-card{
-  width: 25%;
+  width: 20%;
   margin: 40px;
 }
 
 .campaign-boxes-list{
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-evenly;
+}
+
+.left-menu{
+  display: block;
+  float: left;
+  height: 100vh;
 }
