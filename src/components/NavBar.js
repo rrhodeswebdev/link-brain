@@ -22,7 +22,7 @@ function NavBar() {
         showMenuIconButton = {false}
         iconElementRight = {rightButtons}
       />
-      <Paper className='left-menu'>
+      <Paper className='left-menu' zDepth={2}>
         <Menu>
           <Link to='/dashboard'><MenuItem primaryText='Home' leftIcon={<FontIcon className='material-icons'>home</FontIcon>} /></Link>
           <Link to='/dashboard/campaigns'><MenuItem primaryText='Campaigns' leftIcon={<FontIcon className='material-icons'>public</FontIcon>} /></Link>
