@@ -13,3 +13,13 @@
   margin: 0 10px 40px 10px;
   width: 40%;
 }
+
+.campaign-card{
+  width: 25%;
+  margin: 40px;
+}
+
+.campaign-boxes-list{
+  display: flex;
+  justify-content: flex-start;
+}
