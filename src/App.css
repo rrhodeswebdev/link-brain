@@ -29,3 +29,21 @@
   float: left;
   height: 100vh;
 }
+
+.contact-table-area{
+  margin-top: 20px;
+}
+
+.add-new-contact-modal{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.add-contact-text-field{
+  margin-right: 40px;
+}
+
+.add-new-contact-btn{
+  margin: 40px 0 0 40px;
+}

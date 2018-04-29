@@ -6,13 +6,14 @@ import {
   TableBody,
   TableRow
 } from 'material-ui/Table';
+
 import ContactTableEntry from './ContactTableEntry';
 
 function ContactTable() {
   return(
-    <div>
+    <div className='contact-table-area'>
       <Table>
-        <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+        <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
           <TableRow>
             <TableHeaderColumn>Name</TableHeaderColumn>
             <TableHeaderColumn>Email</TableHeaderColumn>
@@ -20,10 +21,11 @@ function ContactTable() {
             <TableHeaderColumn>Linking URL</TableHeaderColumn>
             <TableHeaderColumn>Campaign</TableHeaderColumn>
             <TableHeaderColumn>Status</TableHeaderColumn>
+            <TableHeaderColumn>Notes</TableHeaderColumn>
             <TableHeaderColumn>Last Updated</TableHeaderColumn>
           </TableRow>
         </TableHeader>
-        <TableBody displayRowCheckbox={false}>
+        <TableBody>
           <ContactTableEntry />
         </TableBody>
       </Table>
