@@ -10,8 +10,8 @@
 }
 
 .social-sign-btn{
-  margin: 0 10px 40px 10px;
-  width: 40%;
+  margin: 0 20px 40px 20px;
+  width: 35%;
 }
 
 .campaign-card{
@@ -45,6 +45,17 @@
   margin-right: 40px;
 }
 
+.contact-btns{
+  display: flex;
+  justify-content: space-between;
+}
+
 .add-new-contact-btn{
+  display: flex;
   margin: 40px 0 0 40px;
+}
+
+.delete-contact-btn{
+  display: flex;
+  margin: 40px 40px 0 0;
 }
