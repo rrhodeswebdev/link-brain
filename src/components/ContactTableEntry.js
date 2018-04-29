@@ -6,14 +6,14 @@ import {
 
 function ContactTableEntry() {
   return(
-    <TableRow>
+    <TableRow hoverable={true}>
       <TableRowColumn>Ryan Rhodes</TableRowColumn>
       <TableRowColumn>rrhodes.webdev@gmail.com</TableRowColumn>
       <TableRowColumn>ryanrhodeswebdev.com</TableRowColumn>
       <TableRowColumn>ryanrhodeswebdev.com/blog/cool-ideas</TableRowColumn>
       <TableRowColumn>Campaign 1</TableRowColumn>
       <TableRowColumn>New Contact</TableRowColumn>
-      <TableRowColumn>Adding a simple note for the contact</TableRowColumn>
+      <TableRowColumn style={{ whiteSpace: 'normal', wordWrap: 'break-word'}}>Adding a simple note for the contact</TableRowColumn>
       <TableRowColumn>04/28/18</TableRowColumn>
     </TableRow>
   )

@@ -1,11 +1,11 @@
 import React from 'react';
 import ContactTable from './ContactTable';
-import AddContactForm from './AddContactForm';
+import ContactsForm from './ContactsForm';
 
 function Contacts() {
   return(
     <div>
-      <AddContactForm />
+      <ContactsForm />
       <ContactTable />
     </div>
   )

@@ -2,6 +2,7 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
+import FontIcon from 'material-ui/FontIcon';
 
 function SignUpForm() {
   return(
@@ -24,15 +25,23 @@ function SignUpForm() {
         <RaisedButton
           label='Sign Up'
           className='sign-btn'
+          backgroundColor='#42A5F5'
+          labelColor='#FAFAFA'
         />
-          <br />
+          <p style={{color: '#9E9E9E', fontSize: '14px', paddingBottom: '10px'}}><em>Or sign up using...</em></p>
         <RaisedButton 
           label='Facebook'
           className='social-sign-btn'
+          backgroundColor='#4267B2'
+          labelColor='#FAFAFA'
+          icon={<FontIcon style={{fontSize: '1.2em', marginRight: '5px'}} className='fab fa-facebook-f fa-xs' />}
         />
         <RaisedButton 
           label='Google'
           className='social-sign-btn'
+          backgroundColor='#EA4335'
+          labelColor='#FAFAFA'
+          icon={<FontIcon style={{fontSize: '1.2em', marginRight: '5px'}} className='fab fa-google fa-xs' />}
         />
       </Paper>
     </div>

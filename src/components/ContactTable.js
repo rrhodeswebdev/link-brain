@@ -12,7 +12,7 @@ import ContactTableEntry from './ContactTableEntry';
 function ContactTable() {
   return(
     <div className='contact-table-area'>
-      <Table>
+      <Table style={{ tableLayout: 'auto' }} fixedHeader={false}>
         <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
           <TableRow>
             <TableHeaderColumn>Name</TableHeaderColumn>

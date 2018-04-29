@@ -6,7 +6,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 
-class AddContactForm extends Component {
+class ContactsForm extends Component {
   constructor(props){
     super(props)
 
@@ -39,7 +39,21 @@ class AddContactForm extends Component {
     ]
     return(
       <div>
-        <RaisedButton className='add-new-contact-btn' label='Add New Contact' onClick={this.handleOpen} />
+        <div className='contact-btns'>
+          <RaisedButton 
+            className='add-new-contact-btn' 
+            label='Add New Contact' 
+            labelColor='#FAFAFA'
+            onClick={this.handleOpen}
+            backgroundColor='#7CB342'
+          />
+          <RaisedButton 
+            className='delete-contact-btn' 
+            label='Delete Contacts' 
+            labelColor='#FAFAFA'
+            backgroundColor='#EF5350'
+          />
+        </div>
         <div>
           <Dialog
             title='Create a new contact'
@@ -70,11 +84,15 @@ class AddContactForm extends Component {
             />
             <SelectField floatingLabelText='Status'>
               <MenuItem value={1} primaryText='New Contact' />
-              <MenuItem value={2} primaryText='Reached Out' />
+              <MenuItem value={2} primaryText='Needs More Research' />
               <MenuItem value={3} primaryText='Awaiting Response' />
               <MenuItem value={4} primaryText='Response Recieved' />
-              <MenuItem value={5} primaryText='More Information Needed' />
-              <MenuItem value={6} primaryText='Link Recieved' />
+              <MenuItem value={5} primaryText='Follow Up Needed' />
+              <MenuItem value={6} primaryText='Link Approved' />
+              <MenuItem value={7} primaryText='Link Denied' />
+              <MenuItem value={8} primaryText='Link Recieved' />
+              <MenuItem value={9} primaryText='Guest Post Approved' />
+              <MenuItem value={10} primaryText='Guest Post Denied' />
             </SelectField>
             <TextField
               floatingLabelText='Notes'
@@ -89,4 +107,4 @@ class AddContactForm extends Component {
   }
 }
 
-export default AddContactForm;
+export default ContactsForm;
