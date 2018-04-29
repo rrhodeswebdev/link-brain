@@ -17,6 +17,7 @@
 .campaign-card{
   width: 20%;
   margin: 40px;
+  cursor: pointer;
 }
 
 .campaign-boxes-list{
