@@ -24,10 +24,10 @@ function NavBar() {
       />
       <Paper className='left-menu' zDepth={2}>
         <Menu>
-          <Link to='/dashboard'><MenuItem primaryText='Home' leftIcon={<FontIcon className='material-icons'>home</FontIcon>} /></Link>
-          <Link to='/dashboard/campaigns'><MenuItem primaryText='Campaigns' leftIcon={<FontIcon className='material-icons'>public</FontIcon>} /></Link>
-          <Link to='/dashboard/contacts'><MenuItem primaryText='Contacts' leftIcon={<FontIcon className='material-icons'>supervisor_account</FontIcon>} /></Link>
-          <Link to='/dashboard/reporting'><MenuItem primaryText='Reporting' leftIcon={<FontIcon className='material-icons'>trending_up</FontIcon>} /></Link>
+          <Link to='/dashboard' style={{textDecoration: 'none'}}><MenuItem primaryText='Home' leftIcon={<FontIcon className='material-icons'>home</FontIcon>} /></Link>
+          <Link to='/dashboard/campaigns' style={{textDecoration: 'none'}}><MenuItem primaryText='Campaigns' leftIcon={<FontIcon className='material-icons'>public</FontIcon>} /></Link>
+          <Link to='/dashboard/contacts' style={{textDecoration: 'none'}}><MenuItem primaryText='Contacts' leftIcon={<FontIcon className='material-icons'>supervisor_account</FontIcon>} /></Link>
+          <Link to='/dashboard/reporting' style={{textDecoration: 'none'}} ><MenuItem primaryText='Reporting' leftIcon={<FontIcon className='material-icons'>trending_up</FontIcon>} /></Link>
         </Menu>
       </Paper>
     </div>
