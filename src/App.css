@@ -1,7 +1,15 @@
 .form-paper{
   width: 25%;
-  margin: 50px auto;
   text-align: center;
+  padding-top: 20px;
+}
+
+.sign-forms{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #007DC6;
 }
 
 .sign-btn{
@@ -15,14 +23,9 @@
 }
 
 .campaign-card{
-  width: 20%;
   margin: 40px;
+  padding: 40px;
   cursor: pointer;
-}
-
-.campaign-boxes-list{
-  display: flex;
-  justify-content: space-evenly;
 }
 
 .left-menu{
@@ -45,9 +48,23 @@
   margin-right: 40px;
 }
 
+.campaign-list-area{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.toolbar-separator-campaign-detail{
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 0;
+}
+
+.contact-search-bar{
+  display: flex;
+}
+
 .contact-btns{
   display: flex;
-  justify-content: space-between;
 }
 
 .add-new-contact-btn{
@@ -57,5 +74,5 @@
 
 .delete-contact-btn{
   display: flex;
-  margin: 40px 40px 0 0;
+  margin: 40px 0 0 40px;
 }

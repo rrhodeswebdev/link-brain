@@ -5,22 +5,19 @@ import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import FontIcon from 'material-ui/FontIcon';
 import { Link } from 'react-router-dom';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import IconMenu from 'material-ui/IconMenu';
-import IconButton from 'material-ui/IconButton';
 
 function NavBar() {
   return(
     <div>
       <AppBar title='LinkBrain' showMenuIconButton={false} style={{backgroundColor: '#42A5F5'}}>
         <IconMenu
-          iconButtonElement={<IconButton><MoreVertIcon color='#FAFAFA'/></IconButton>}
+          iconButtonElement={<FontIcon className='fas fa-link' style={{marginTop: '10px', fontSize: '1.2em', color: 'white'}} />}
           anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-          targetOrigin={{horizontal: 'right', vertical: 'top'}}
-          style={{marginTop: '8px'}}
+          targetOrigin={{horizontal: 'right', vertical: 'bottom'}}
+          style={{marginTop: '10px'}}
         >
-          <Link to='/sign-in' style={{textDecoration: 'none'}}><MenuItem primaryText='Sign In' /></Link>
-          <Link to='/sign-up' style={{textDecoration: 'none'}}><MenuItem primaryText='Sign Up' /></Link>
+          <Link to='/' style={{textDecoration: 'none'}}><MenuItem primaryText='Log Out' /></Link>
         </IconMenu>
       </AppBar>
       <Paper className='left-menu' zDepth={2}>

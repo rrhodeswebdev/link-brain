@@ -4,16 +4,15 @@ import {
   TableHeader,
   TableHeaderColumn,
   TableBody,
-  TableRow
+  TableRow,
+  TableRowColumn
 } from 'material-ui/Table';
-
-import ContactTableEntry from './ContactTableEntry';
 
 function ContactTable() {
   return(
     <div className='contact-table-area'>
       <Table style={{ tableLayout: 'auto' }} fixedHeader={false}>
-        <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
+        <TableHeader>
           <TableRow>
             <TableHeaderColumn>Name</TableHeaderColumn>
             <TableHeaderColumn>Email</TableHeaderColumn>
@@ -26,7 +25,16 @@ function ContactTable() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          <ContactTableEntry />
+          <TableRow hoverable={true}>
+            <TableRowColumn>Ryan Rhodes</TableRowColumn>
+            <TableRowColumn>rrhodes.webdev@gmail.com</TableRowColumn>
+            <TableRowColumn>ryanrhodeswebdev.com</TableRowColumn>
+            <TableRowColumn>ryanrhodeswebdev.com/blog/cool-ideas</TableRowColumn>
+            <TableRowColumn>Campaign 1</TableRowColumn>
+            <TableRowColumn>New Contact</TableRowColumn>
+            <TableRowColumn style={{ whiteSpace: 'normal', wordWrap: 'break-word'}}>Adding a simple note for the contact</TableRowColumn>
+            <TableRowColumn>04/28/18</TableRowColumn>
+          </TableRow>
         </TableBody>
       </Table>
     </div>

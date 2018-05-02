@@ -13,24 +13,6 @@ function CampaignListItem() {
             <span>Created on: Date</span>
           </CardText>
         </Card>
-        <Card className='campaign-card'>
-          <CardTitle 
-            title='Campaign 2'
-            subtitle='Blog Post'
-          />
-          <CardText>
-            <span>Created on: Date</span>
-          </CardText>
-        </Card>
-        <Card className='campaign-card'>
-          <CardTitle 
-            title='Campaign 3'
-            subtitle='Blog Post'
-          />
-          <CardText>
-            <span>Created on: Date</span>
-          </CardText>
-        </Card>
       </div>
     )
   }

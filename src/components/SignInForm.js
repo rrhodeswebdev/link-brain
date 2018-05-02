@@ -6,7 +6,7 @@ import FontIcon from 'material-ui/FontIcon';
 
 function SignInForm() {
   return(
-    <div>
+    <div className='sign-forms'>
       <Paper className='form-paper' zDepth={2}>
         <TextField 
           floatingLabelText='Username'
@@ -38,6 +38,7 @@ function SignInForm() {
           labelColor='#FAFAFA'
           icon={<FontIcon style={{fontSize: '1.2em', marginRight: '5px'}} className='fab fa-google fa-xs' />}
         />
+        <p style={{color: '#9E9E9E', fontSize: '14px', paddingBottom: '40px'}}><em>Need to register? Sign up <a href='./sign-up'>here</a></em></p>
       </Paper>
     </div>
   )
