@@ -6,6 +6,8 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import AutoComplete from 'material-ui/AutoComplete';
+import { connect } from 'react-redux';
+import { newEntry } from '../actions/contactActions';
 
 class ContactsForm extends Component {
   constructor(props){
@@ -118,4 +120,4 @@ class ContactsForm extends Component {
   }
 }
 
-export default ContactsForm;
+export default connect(null, { newEntry })(ContactsForm);
