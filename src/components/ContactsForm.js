@@ -5,6 +5,7 @@ import MenuItem from 'material-ui/MenuItem';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import AutoComplete from 'material-ui/AutoComplete';
 
 class ContactsForm extends Component {
   constructor(props){
@@ -36,7 +37,10 @@ class ContactsForm extends Component {
         disabled={true}
         onClick={this.handleClose}
       />
-    ]
+    ];
+
+    const fake = ['fake', 'data', 'inserted', 'here', 'until', 'the', 'real', 'data', 'is', 'available'];
+    
     return(
       <div>
         <div className='contact-btns'>
@@ -52,6 +56,13 @@ class ContactsForm extends Component {
             label='Delete Contacts' 
             labelColor='#FAFAFA'
             backgroundColor='#EF5350'
+          />
+          <AutoComplete
+            floatingLabelText='Search Contacts'
+            filter={AutoComplete.fuzzyFilter}
+            maxSearchResults={5}
+            dataSource={fake}
+            className='contact-search-bar'
           />
         </div>
         <div>
