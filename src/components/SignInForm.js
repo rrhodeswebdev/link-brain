@@ -1,20 +1,45 @@
-import React from 'react';
+import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 import FontIcon from 'material-ui/FontIcon';
+import { Field, reduxForm } from 'redux-form';
 
-function SignInForm() {
-  return(
+class SignInForm extends Component {
+  render(){
+    const renderTextField = ({
+      input,
+      label,
+    }) => (
+      <TextField
+        floatingLabelText={label}
+        {...input}
+      />
+          )
+    
+    const renderPassword = ({
+      input,
+      label,
+    }) => (
+      <TextField
+        floatingLabelText={label}
+        type='password'
+        {...input}
+      />
+          )
+    return(
     <div className='sign-forms'>
       <Paper className='form-paper' zDepth={2}>
-        <TextField 
-          floatingLabelText='Username'
+        <Field
+          name='username'
+          label='Username'
+          component={renderTextField}
         />
           <br />
-        <TextField 
-        floatingLabelText="Password"
-        type="password"
+        <Field
+          name='password'
+          label='Password'
+          component={renderPassword}
         />
           <br />
         <RaisedButton
@@ -41,7 +66,9 @@ function SignInForm() {
         <p style={{color: '#9E9E9E', fontSize: '14px', paddingBottom: '40px'}}><em>Need to register? Sign up <a href='./sign-up'>here</a></em></p>
       </Paper>
     </div>
-  )
+  )}
 }
 
-export default SignInForm;
+export default reduxForm({
+  form: 'SignInForm'
+})(SignInForm);
