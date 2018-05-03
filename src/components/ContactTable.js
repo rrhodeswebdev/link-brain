@@ -17,20 +17,20 @@ class ContactTable extends Component {
   }
   render(){
     const tableEntries = this.props.entries.map(entry => (
-      <TableRow hoverable={true}>
-        <TableRowColumn>Ryan Rhodes</TableRowColumn>
-        <TableRowColumn>rrhodes.webdev@gmail.com</TableRowColumn>
-        <TableRowColumn>ryanrhodeswebdev.com</TableRowColumn>
-        <TableRowColumn>ryanrhodeswebdev.com/blog/cool-ideas</TableRowColumn>
-        <TableRowColumn>Campaign 1</TableRowColumn>
-        <TableRowColumn>New Contact</TableRowColumn>
-        <TableRowColumn style={{ whiteSpace: 'normal', wordWrap: 'break-word'}}>Adding a simple note for the contact</TableRowColumn>
-        <TableRowColumn>04/28/18</TableRowColumn>
+      <TableRow hoverable={true} key={entry.id}>
+        <TableRowColumn>{entry.name}</TableRowColumn>
+        <TableRowColumn>{entry.email}</TableRowColumn>
+        <TableRowColumn>{entry.website}</TableRowColumn>
+        <TableRowColumn>{entry.linkurl}</TableRowColumn>
+        <TableRowColumn>{entry.campaign}</TableRowColumn>
+        <TableRowColumn>{entry.status}</TableRowColumn>
+        <TableRowColumn style={{ whiteSpace: 'normal', wordWrap: 'break-word'}}>{entry.note}</TableRowColumn>
+        <TableRowColumn>{entry.date}</TableRowColumn>
       </TableRow>
     ))
     return(
       <div className='contact-table-area'>
-        <Table style={{ tableLayout: 'auto' }} fixedHeader={false}>
+        <Table style={{ tableLayout: 'auto' }} fixedHeader={false} multiSelectable={true}>
           <TableHeader>
             <TableRow>
               <TableHeaderColumn>Name</TableHeaderColumn>

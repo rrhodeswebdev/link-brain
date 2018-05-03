@@ -6,8 +6,8 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import AutoComplete from 'material-ui/AutoComplete';
-import { connect } from 'react-redux';
 import { newEntry } from '../actions/contactActions';
+import { Field, reduxForm } from 'redux-form';
 
 class ContactsForm extends Component {
   constructor(props){
@@ -40,6 +40,35 @@ class ContactsForm extends Component {
         onClick={this.handleClose}
       />
     ];
+
+    const renderTextField = ({
+      input,
+      label,
+      meta: {touched, error }, ...custom
+    }) => (
+      <TextField
+        floatingLabelText={label}
+        {...input}
+        {...custom}
+      />
+    )
+
+    const renderSelectField = ({
+      input,
+      label,
+      meta: { touched, error },
+      children,
+      ...custom
+    }) => (
+      <SelectField
+        floatingLabelText={label}
+        errorText={touched && error}
+        {...input}
+        onChange={(event, index, value) => input.onChange(value)}
+        children={children}
+        {...custom}
+      />
+    )
 
     const fake = ['fake', 'data', 'inserted', 'here', 'until', 'the', 'real', 'data', 'is', 'available'];
     
@@ -75,44 +104,57 @@ class ContactsForm extends Component {
             open={this.state.open}
             bodyClassName='add-new-contact-modal'
           >
-            <TextField
-              floatingLabelText='Name'
-              className='add-contact-text-field'
-            />
-            <TextField
-              floatingLabelText='Email'
-              className='add-contact-text-field'
-            />
-            <TextField
-              floatingLabelText='Website'
-              className='add-contact-text-field'
-            />
-            <TextField
-              floatingLabelText='Linking URL'
-              className='add-contact-text-field'
-            />
-            <TextField
-              floatingLabelText='Campaign'
-              className='add-contact-text-field'
-            />
-            <SelectField floatingLabelText='Status'>
-              <MenuItem value={1} primaryText='New Contact' />
-              <MenuItem value={2} primaryText='Needs More Research' />
-              <MenuItem value={3} primaryText='Awaiting Response' />
-              <MenuItem value={4} primaryText='Response Recieved' />
-              <MenuItem value={5} primaryText='Follow Up Needed' />
-              <MenuItem value={6} primaryText='Link Approved' />
-              <MenuItem value={7} primaryText='Link Denied' />
-              <MenuItem value={8} primaryText='Link Recieved' />
-              <MenuItem value={9} primaryText='Guest Post Approved' />
-              <MenuItem value={10} primaryText='Guest Post Denied' />
-            </SelectField>
-            <TextField
-              floatingLabelText='Notes'
-              multiLine={true}
-              rowsMax={4}
-              className='add-contact-text-field'
-            />
+            <form>
+              <Field 
+                name='name'
+                label='Name'
+                component={renderTextField}
+              />
+              <Field 
+                name='email'
+                label='Email'
+                component={renderTextField}
+              />
+              <Field 
+                name='website'
+                label='Website'
+                component={renderTextField}
+              />
+              <Field 
+                name='linkurl'
+                label='Linking URL'
+                component={renderTextField}
+              />
+              <Field 
+                name='campaign'
+                label='Campaign'
+                component={renderTextField}
+              />
+              <Field
+                  name="status"
+                  component={renderSelectField}
+                  label="Status"
+                >
+                <MenuItem value={1} primaryText='New Contact' />
+                <MenuItem value={2} primaryText='Needs More Research' />
+                <MenuItem value={3} primaryText='Awaiting Response' />
+                <MenuItem value={4} primaryText='Response Recieved' />
+                <MenuItem value={5} primaryText='Follow Up Needed' />
+                <MenuItem value={6} primaryText='Link Approved' />
+                <MenuItem value={7} primaryText='Link Denied' />
+                <MenuItem value={8} primaryText='Link Recieved' />
+                <MenuItem value={9} primaryText='Guest Post Approved' />
+                <MenuItem value={10} primaryText='Guest Post Denied' />
+                </Field>
+              <Field 
+                name='notes'
+                label='Notes'
+                component={renderTextField}
+                multiLine={true}
+                rowsMax={4}
+                className='add-contact-text-field'
+              />
+            </form>
           </Dialog>
         </div>
       </div>
@@ -120,4 +162,6 @@ class ContactsForm extends Component {
   }
 }
 
-export default connect(null, { newEntry })(ContactsForm);
+export default reduxForm({
+  form: 'ContactsForm'
+}, null, { newEntry })(ContactsForm)
