@@ -11,7 +11,7 @@ import {
 import { connect } from 'react-redux';
 import { fetchEntries } from '../actions/contactActions';
 
-class ContactTable extends Component() {
+class ContactTable extends Component {
   componentDidMount() {
     this.props.fetchEntries();
   }

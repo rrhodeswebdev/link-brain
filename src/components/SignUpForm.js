@@ -5,33 +5,48 @@ import Paper from 'material-ui/Paper';
 import FontIcon from 'material-ui/FontIcon';
 import { Field, reduxForm } from 'redux-form';
 
-class SignUpForm extends Component() {
-  renderUsername() {
-    return(
-      <TextField 
-        floatingLabelText='Username'
-      />
-    )
-  }
-
+class SignUpForm extends Component {
   render(){
+      const renderTextField = ({
+        input,
+        label,
+      }) => (
+        <TextField
+          floatingLabelText={label}
+          {...input}
+        />
+            )
+      
+      const renderPassword = ({
+        input,
+        label,
+      }) => (
+        <TextField
+          floatingLabelText={label}
+          type='password'
+          {...input}
+        />
+            )
     return(
-      <div className='sign-forms'>
-        <form>
+      <div>
+        <form className='sign-forms'>
           <Paper className='form-paper' zDepth={2}>
             <Field 
               name='username'
-              component={this.renderUsername}
+              label='Username'
+              component={renderTextField}
             />
               <br />
-            <TextField 
-            floatingLabelText='Email'
-            type='email'
+            <Field 
+              name='email'
+              label='Email'
+              component={renderTextField}
             />
               <br />
-            <TextField 
-            floatingLabelText="Password"
-            type="password"
+            <Field 
+              name='password'
+              label='Password'
+              component={renderPassword}
             />
               <br />
             <RaisedButton
