@@ -53,7 +53,7 @@ class ContactTable extends Component() {
 }
 
 const mapStateToProps = state => ({
-  entries: state.entries.items
+  entries: state.entries.entries
 })
 
 export default connect(mapStateToProps, { fetchEntries })(ContactTable);
