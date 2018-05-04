@@ -3,8 +3,10 @@ import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
 import TextField from 'material-ui/TextField';
 import Dialog from 'material-ui/Dialog';
+import { Field, reduxForm } from 'redux-form';
+import { newCampaign } from '../actions/campaignActions';
 
-class CampaignEdit extends Component {
+class CampaignForm extends Component {
   constructor(props){
     super(props)
 
@@ -21,6 +23,17 @@ class CampaignEdit extends Component {
     this.setState({open: false})
   };
   render(){
+    const renderTextField = ({
+      input,
+      label,
+    }) => (
+      <TextField
+        floatingLabelText={label}
+        style={{margin: '0 10px'}}
+        {...input}
+      />
+          )
+
     const actions = [
       <FlatButton
         label='Cancel'
@@ -30,7 +43,6 @@ class CampaignEdit extends Component {
       <FlatButton
         label='Submit'
         primary={true}
-        disabled={true}
         onClick={this.handleClose}
       />
     ];
@@ -50,14 +62,18 @@ class CampaignEdit extends Component {
               open={this.state.open}
               bodyClassName='add-new-contact-modal'
             >
-              <TextField
-                floatingLabelText='Name'
-                className='add-contact-text-field'
+              <form>
+                <Field 
+                  name='name'
+                  label='Name'
+                  component={renderTextField}
+                />
+                <Field 
+                name='url'
+                label='URL'
+                component={renderTextField}
               />
-              <TextField
-                floatingLabelText='URL'
-                className='add-contact-text-field'
-              />
+              </form>
             </Dialog>
           </div>
       </div>
@@ -66,4 +82,6 @@ class CampaignEdit extends Component {
   
 }
 
-export default CampaignEdit;
+export default reduxForm({
+  form: 'CampaignForm'
+}, null, { newCampaign })(CampaignForm)

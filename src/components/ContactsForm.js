@@ -36,8 +36,7 @@ class ContactsForm extends Component {
       <FlatButton
         label='Submit'
         primary={true}
-        disabled={true}
-        onClick={this.handleClose}
+        onClick={this.props.newEntry}
       />
     ];
 
@@ -47,6 +46,7 @@ class ContactsForm extends Component {
       meta: {touched, error }, ...custom
     }) => (
       <TextField
+        style={{margin: '0 10px'}}
         floatingLabelText={label}
         {...input}
         {...custom}
@@ -61,6 +61,7 @@ class ContactsForm extends Component {
       ...custom
     }) => (
       <SelectField
+        style={{margin: '0 10px'}}
         floatingLabelText={label}
         errorText={touched && error}
         {...input}

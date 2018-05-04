@@ -1,16 +1,16 @@
 import React from 'react';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
 
-function CampaignListItem() {
+function CampaignListItem(props) {
     return(
       <div className='campaign-boxes-list'>
         <Card className='campaign-card'>
           <CardTitle 
-            title='Campaign 1'
-            subtitle='Blog Post'
+            title={props.name}
+            subtitle={props.url}
           />
           <CardText>
-            <span>Created on: Date</span>
+            <span>Created on: {props.date}</span>
           </CardText>
         </Card>
       </div>

@@ -1,4 +1,4 @@
-import { FETCH_ENTRIES, NEW_ENTRY } from '../actions/types';
+import { FETCH_ENTRIES, NEW_ENTRY, DELETE_ENTRY } from '../actions/types';
 
 const initialState = {
   entries: [
@@ -36,7 +36,8 @@ const initialState = {
       id: 3
     }
   ],
-  entry: {}
+  entry: {},
+  formOpen: false
 }
 
 export default function(state = initialState, action) {
@@ -50,6 +51,10 @@ export default function(state = initialState, action) {
       return {
         ...state,
         entry: action.payload
+      }
+    case DELETE_ENTRY:
+      return {
+        ...state,
       }
     default: 
       return state;

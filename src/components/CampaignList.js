@@ -1,16 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
 import CampaignListItem from './CampaignListItem';
-import CampaignEdit from './CampaignEdit';
+import CampaignForm from './CampaignForm';
+import { Card, CardTitle, CardText } from 'material-ui/Card';
 
-function CampaignList() {
-  return(
-    <div className='campaign-list-area'>
-      <CampaignEdit />
-      <CampaignListItem />
-      <CampaignListItem />
-      <CampaignListItem />
-    </div>
-  )
+import { connect } from 'react-redux';
+import { fetchCampaigns } from '../actions/campaignActions';
+
+class CampaignList extends Component {
+  componentDidMount() {
+    this.props.fetchCampaigns()
+  }
+
+  render(){
+    const campaign = this.props.campaigns.map(campaign => (
+      <CampaignListItem {...campaign}/>
+    ));
+    return(
+      <div className='campaign-list-area'>
+        <CampaignForm />
+        {campaign}
+      </div>
+    )
+  }
 }
 
-export default CampaignList;
+const mapStateToProps = state => ({
+  campaigns: state.campaigns.campaigns
+})
+
+export default connect(mapStateToProps, { fetchCampaigns })(CampaignList);
