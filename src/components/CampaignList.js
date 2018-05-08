@@ -17,7 +17,7 @@ class CampaignList extends Component {
 
   render(){
     const campaign = this.props.campaigns.map(campaign => (
-      <CampaignListItem {...campaign}/>
+      <CampaignListItem {...campaign} />
     ));
     return(
       <div className='campaign-list-area'>
