@@ -34,7 +34,7 @@ export default function(state = initialState, action) {
     case NEW_CAMPAIGN:
       return {
         ...state,
-        campaign: action.payload
+        campaigns: [...state.campaigns, action.campaign]
       }
     default:
       return state;

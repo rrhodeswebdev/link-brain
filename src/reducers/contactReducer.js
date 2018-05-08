@@ -50,7 +50,6 @@ export default function(state = initialState, action) {
     case NEW_ENTRY:
       return {
         ...state,
-        entry: action.payload,
         entries: [...state.entries, action.entry]
       };
     case DELETE_ENTRY:

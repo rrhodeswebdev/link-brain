@@ -23,6 +23,7 @@ class CampaignForm extends Component {
     this.setState({open: false})
   };
   render(){
+    const submit = this.props.handleSubmit(this.props.onSubmit);
     const renderTextField = ({
       input,
       label,
@@ -43,7 +44,7 @@ class CampaignForm extends Component {
       <FlatButton
         label='Submit'
         primary={true}
-        onClick={this.handleClose}
+        onClick={() => {submit(); this.props.reset(); this.handleClose();}}
       />
     ];
     return(

@@ -12,8 +12,13 @@ export function fetchCampaigns() {
   }
 }
 
-export function newCampaign() {
-  return function(dispatch) {
-    //Make API call right here
-  }
-}
+// export function newCampaign() {
+//   return function(dispatch) {
+//     //Make API call right here
+//   }
+// }
+
+export const newCampaign = campaign => ({
+  type: NEW_CAMPAIGN,
+  campaign
+});
