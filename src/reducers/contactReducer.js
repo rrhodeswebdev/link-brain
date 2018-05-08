@@ -1,4 +1,4 @@
-import { FETCH_ENTRIES, NEW_ENTRY, DELETE_ENTRY } from '../actions/types';
+import { FETCH_ENTRIES, NEW_ENTRY, DELETE_ENTRY, ROW_SELECTED } from '../actions/types';
 
 const initialState = {
   entries: [
@@ -9,7 +9,7 @@ const initialState = {
       linkurl: 'rrhodes.com/blog/funny',
       campaign: 'Campaign 1',
       status: 'New Contact',
-      note: 'This is a simple note that has been added',
+      notes: 'This is a simple note that has been added',
       date: '04/28/2018',
       id: 1
     },
@@ -20,7 +20,7 @@ const initialState = {
       linkurl: 'alaska.org/blog/cool-bear-stories',
       campaign: 'Campaign 6',
       status: 'Waiting on Response',
-      note: 'This is a simple note that has been added',
+      notes: 'This is a simple note that has been added',
       date: '05/01/2018',
       id: 2
     },
@@ -31,13 +31,13 @@ const initialState = {
       linkurl: 'mediaads.com/tutorials/',
       campaign: 'Campaign 4',
       status: 'Awaiting Response',
-      note: '',
+      notes: '',
       date: '04/17/2018',
       id: 3
     }
   ],
   entry: {},
-  formOpen: false
+  selectedRows: []
 }
 
 export default function(state = initialState, action) {
@@ -50,11 +50,17 @@ export default function(state = initialState, action) {
     case NEW_ENTRY:
       return {
         ...state,
-        entry: action.payload
-      }
+        entry: action.payload,
+        entries: [...state.entries, action.entry]
+      };
     case DELETE_ENTRY:
       return {
         ...state,
+      };
+    case ROW_SELECTED:
+      return {
+        ...state,
+        selectedRows: action.selectedRows
       }
     default: 
       return state;

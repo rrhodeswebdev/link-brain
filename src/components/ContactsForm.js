@@ -27,6 +27,7 @@ class ContactsForm extends Component {
   };
 
   render(){
+    const submit = this.props.handleSubmit(this.props.onSubmit);
     const actions = [
       <FlatButton
         label='Cancel'
@@ -36,7 +37,7 @@ class ContactsForm extends Component {
       <FlatButton
         label='Submit'
         primary={true}
-        onClick={this.props.newEntry}
+        onClick={() => {submit(); this.props.reset(); this.handleClose();}}
       />
     ];
 
@@ -105,7 +106,7 @@ class ContactsForm extends Component {
             open={this.state.open}
             bodyClassName='add-new-contact-modal'
           >
-            <form>
+            <form onSubmit = {this.props.handleSubmit}>
               <Field 
                 name='name'
                 label='Name'
@@ -136,16 +137,16 @@ class ContactsForm extends Component {
                   component={renderSelectField}
                   label="Status"
                 >
-                <MenuItem value={1} primaryText='New Contact' />
-                <MenuItem value={2} primaryText='Needs More Research' />
-                <MenuItem value={3} primaryText='Awaiting Response' />
-                <MenuItem value={4} primaryText='Response Recieved' />
-                <MenuItem value={5} primaryText='Follow Up Needed' />
-                <MenuItem value={6} primaryText='Link Approved' />
-                <MenuItem value={7} primaryText='Link Denied' />
-                <MenuItem value={8} primaryText='Link Recieved' />
-                <MenuItem value={9} primaryText='Guest Post Approved' />
-                <MenuItem value={10} primaryText='Guest Post Denied' />
+                <MenuItem value={'New Contact'} primaryText='New Contact' />
+                <MenuItem value={'Needs More Research'} primaryText='Needs More Research' />
+                <MenuItem value={'Awaiting Response'} primaryText='Awaiting Response' />
+                <MenuItem value={'Response Recieved'} primaryText='Response Recieved' />
+                <MenuItem value={'Follow Up Needed'} primaryText='Follow Up Needed' />
+                <MenuItem value={'Link Approved'} primaryText='Link Approved' />
+                <MenuItem value={'Link Denied'} primaryText='Link Denied' />
+                <MenuItem value={'Link Recieved'} primaryText='Link Recieved' />
+                <MenuItem value={'Guest Post Approved'} primaryText='Guest Post Approved' />
+                <MenuItem value={'Guest Post Denied'} primaryText='Guest Post Denied' />
                 </Field>
               <Field 
                 name='notes'
