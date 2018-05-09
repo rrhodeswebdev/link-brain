@@ -26,6 +26,10 @@ class ContactsForm extends Component {
     this.setState({open: false})
   };
 
+  handleDelete() {
+    console.log('clicked on the delete button')
+  }
+
   render(){
     const submit = this.props.handleSubmit(this.props.onSubmit);
     const actions = [
@@ -89,6 +93,7 @@ class ContactsForm extends Component {
             label='Delete Contacts' 
             labelColor='#FAFAFA'
             backgroundColor='#EF5350'
+            onClick = {this.handleDelete}
           />
           <AutoComplete
             floatingLabelText='Search Contacts'

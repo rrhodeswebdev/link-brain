@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CampaignListItem from './CampaignListItem';
 import CampaignForm from './CampaignForm';
-import { Card, CardTitle, CardText } from 'material-ui/Card';
 
 import { connect } from 'react-redux';
 import { fetchCampaigns, newCampaign } from '../actions/campaignActions';
