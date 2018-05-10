@@ -22,6 +22,10 @@ export const selectRows = selectedRows => ({
   selectedRows
 });
 
+export const deleteEntries = () => ({
+  type: DELETE_ENTRY
+})
+
 // export function newEntry(entry) {
 //   return function(dispatch) {
 //     console.log('Started dispatch to API for new entry!!!')

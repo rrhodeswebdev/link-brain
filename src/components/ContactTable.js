@@ -55,7 +55,7 @@ class ContactTable extends Component {
                 <TableHeaderColumn>Last Updated</TableHeaderColumn>
               </TableRow>
             </TableHeader>
-            <TableBody>
+            <TableBody deselectOnClickaway={false}>
               {tableEntries}
             </TableBody>
           </Table>

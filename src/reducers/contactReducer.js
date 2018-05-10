@@ -53,8 +53,17 @@ export default function(state = initialState, action) {
         entries: [...state.entries, action.entry]
       };
     case DELETE_ENTRY:
+      let selectedItems = [...state.entries];
+      if(state.selectedRows === 'all') {
+        selectedItems = []
+      } else if(Array.isArray(state.selectedRows)) {
+        selectedItems = selectedItems.filter((item, index) => {
+          return !state.selectedRows.includes(index)
+        })
+      }
       return {
         ...state,
+        entries: selectedItems
       };
     case ROW_SELECTED:
       return {

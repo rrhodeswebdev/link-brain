@@ -13,6 +13,7 @@ class SignInForm extends Component {
     }) => (
       <TextField
         floatingLabelText={label}
+        type='text'
         {...input}
       />
           )
@@ -28,7 +29,7 @@ class SignInForm extends Component {
       />
           )
     return(
-    <div className='sign-forms'>
+    <form className='sign-forms'>
       <Paper className='form-paper' zDepth={2}>
         <Field
           name='username'
@@ -65,7 +66,7 @@ class SignInForm extends Component {
         />
         <p style={{color: '#9E9E9E', fontSize: '14px', paddingBottom: '40px'}}><em>Need to register? Sign up <a href='./sign-up'>here</a></em></p>
       </Paper>
-    </div>
+    </form>
   )}
 }
 

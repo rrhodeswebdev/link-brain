@@ -6,8 +6,9 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import AutoComplete from 'material-ui/AutoComplete';
-import { newEntry } from '../actions/contactActions';
+import { newEntry, deleteEntries } from '../actions/contactActions';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 
 class ContactsForm extends Component {
   constructor(props){
@@ -27,8 +28,8 @@ class ContactsForm extends Component {
   };
 
   handleDelete() {
-    console.log('clicked on the delete button')
-  }
+    this.props.dispatch(deleteEntries())
+  };
 
   render(){
     const submit = this.props.handleSubmit(this.props.onSubmit);
@@ -93,7 +94,7 @@ class ContactsForm extends Component {
             label='Delete Contacts' 
             labelColor='#FAFAFA'
             backgroundColor='#EF5350'
-            onClick = {this.handleDelete}
+            onClick = {() => this.handleDelete()}
           />
           <div className='auto-search-area'>
             <AutoComplete
@@ -170,6 +171,14 @@ class ContactsForm extends Component {
   }
 }
 
-export default reduxForm({
+const mapStateToProps = state => ({
+  
+})
+
+const connectedForm = connect(mapStateToProps)(ContactsForm);
+
+const ReduxForm = reduxForm({
   form: 'ContactsForm'
-}, null, { newEntry })(ContactsForm)
+}, null)(connectedForm)
+
+export default ReduxForm;
