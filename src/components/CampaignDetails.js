@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import FontIcon from 'material-ui/FontIcon';
+import { editCampaign } from '../actions/campaignActions';
 
 class CampaignDetails extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class CampaignDetails extends Component {
   }
   
   handleOpen = () => {
+    console.log('CLICKED EDIT CAMPAIGN')
     this.setState({open: true})
   };
 
@@ -19,8 +21,8 @@ class CampaignDetails extends Component {
     this.setState({open: false})
   };
 
-  handleClick(event) {
-    console.log('clicked on edit button')
+  handleSubmit(event) {
+    this.props.editCampaign()
   }
 
   render(){
@@ -41,7 +43,7 @@ class CampaignDetails extends Component {
               <FontIcon
                 className='far fa-edit'
                 style={{margin: '0 5px', fontSize: '1.2em'}}
-                onClick = {this.handleClick}
+                onClick = {this.handleOpen}
               />
             </ToolbarGroup>
         </Toolbar>

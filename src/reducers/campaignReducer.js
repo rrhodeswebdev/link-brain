@@ -36,6 +36,11 @@ export default function(state = initialState, action) {
         ...state,
         campaigns: [...state.campaigns, action.campaign]
       }
+    case EDIT_CAMPAIGN:
+      return {
+        ...state,
+        campaign: action.payload
+      }
     default:
       return state;
   }

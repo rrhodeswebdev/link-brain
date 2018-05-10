@@ -22,3 +22,8 @@ export const newCampaign = campaign => ({
   type: NEW_CAMPAIGN,
   campaign
 });
+
+export const editCampaign = campaign => ({
+  type: EDIT_CAMPAIGN,
+  campaign
+})

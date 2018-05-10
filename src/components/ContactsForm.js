@@ -95,13 +95,14 @@ class ContactsForm extends Component {
             backgroundColor='#EF5350'
             onClick = {this.handleDelete}
           />
-          <AutoComplete
-            floatingLabelText='Search Contacts'
-            filter={AutoComplete.fuzzyFilter}
-            maxSearchResults={5}
-            dataSource={fake}
-            className='contact-search-bar'
-          />
+          <div className='auto-search-area'>
+            <AutoComplete
+              floatingLabelText='Search Contacts'
+              filter={AutoComplete.fuzzyFilter}
+              maxSearchResults={5}
+              dataSource={fake}
+            />
+          </div>
         </div>
         <div>
           <Dialog

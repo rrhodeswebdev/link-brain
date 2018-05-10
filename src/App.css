@@ -74,20 +74,26 @@
   padding: 0;
 }
 
-.contact-search-bar{
+.auto-search-area{
+  width: 100%;
   display: flex;
+  justify-content: flex-end;
+  margin-right: 40px;
 }
 
 .contact-btns{
   display: flex;
+  justify-content: flex-start;
 }
 
 .add-new-contact-btn{
   display: flex;
   margin: 40px 0 0 40px;
+  width: 20%;
 }
 
 .delete-contact-btn{
   display: flex;
   margin: 40px 0 0 40px;
+  width: 20%;
 }
