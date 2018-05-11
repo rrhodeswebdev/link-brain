@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import FontIcon from 'material-ui/FontIcon';
 import { editCampaign } from '../actions/campaignActions';
+import CampaignForm from './CampaignForm';
 
 class CampaignDetails extends Component {
   constructor(props) {
@@ -15,15 +16,12 @@ class CampaignDetails extends Component {
   handleOpen = () => {
     console.log('CLICKED EDIT CAMPAIGN')
     this.setState({open: true})
+    return <CampaignForm />
   };
 
   handleClose = () => {
     this.setState({open: false})
   };
-
-  handleSubmit(event) {
-    this.props.editCampaign()
-  }
 
   render(){
     return(

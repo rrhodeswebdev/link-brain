@@ -45,18 +45,18 @@ export const deleteEntries = () => ({
 //   }
 // }
 
-export function deleteEntry(entry) {
-  return function(dispatch) {
-    // fetch('url', {
-    //   method: 'DELETE',
-    //   headers: {
-    //     'content-type':'application/json'
-    //   }
-    // })
-    // .then(res => res.json())
-    // .then(entry => dispatch({
-    //   type:DELETE_ENTRY,
-    //   payload: entry
-    // }))
-  }
-}
+// export function deleteEntry(entry) {
+//   return function(dispatch) {
+//     // fetch('url', {
+//     //   method: 'DELETE',
+//     //   headers: {
+//     //     'content-type':'application/json'
+//     //   }
+//     // })
+//     // .then(res => res.json())
+//     // .then(entry => dispatch({
+//     //   type:DELETE_ENTRY,
+//     //   payload: entry
+//     // }))
+//   }
+// }

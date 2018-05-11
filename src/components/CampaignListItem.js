@@ -12,7 +12,6 @@ class CampaignListItem extends Component {
   }
   
   handleCampaignClick(event) {
-    console.log('CLICKED ON A SPECIFIC CAMPAIGN')
     this.setState({
       clicked: true
     })

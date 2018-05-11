@@ -8,11 +8,13 @@ import {
   TableRowColumn
 } from 'material-ui/Table';
 import ContactsForm from './ContactsForm';
+import FontIcon from 'material-ui/FontIcon';
 
 import { connect } from 'react-redux';
 import { fetchEntries, newEntry, selectRows } from '../actions/contactActions';
 
 class ContactTable extends Component {
+
   componentDidMount() {
     this.props.fetchEntries();
   }
@@ -36,13 +38,18 @@ class ContactTable extends Component {
         <TableRowColumn>{entry.status}</TableRowColumn>
         <TableRowColumn style={{ whiteSpace: 'normal', wordWrap: 'break-word'}}>{entry.notes}</TableRowColumn>
         <TableRowColumn>{entry.date}</TableRowColumn>
+        <TableRowColumn><FontIcon className='far fa-edit' style={{fontSize: '1.2em'}} /></TableRowColumn>
       </TableRow>
     ))
     return(
       <div>
         <ContactsForm onSubmit = {values => this.createNewEntry(values)} />
         <div className='contact-table-area'>
-          <Table style={{ tableLayout: 'auto' }} fixedHeader={false} multiSelectable={true} onRowSelection={selected => this.handleRowSelection(selected)}>
+          <Table style={{ tableLayout: 'auto' }} 
+            fixedHeader={false} 
+            multiSelectable={true} 
+            onRowSelection={selected => this.handleRowSelection(selected)} 
+          >
             <TableHeader>
               <TableRow>
                 <TableHeaderColumn>Name</TableHeaderColumn>

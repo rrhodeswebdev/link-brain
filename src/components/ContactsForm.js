@@ -6,7 +6,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import AutoComplete from 'material-ui/AutoComplete';
-import { newEntry, deleteEntries } from '../actions/contactActions';
+import { deleteEntries } from '../actions/contactActions';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 
@@ -57,6 +57,13 @@ class ContactsForm extends Component {
         {...input}
         {...custom}
       />
+    )
+
+    const renderAutoComplete = ({
+      input,
+      label
+    }) => (
+      <AutoComplete floatingLabelText='Campaign' filter={AutoComplete.caseSensitiveFilter} dataSource={this.props.state.entries.campaign} />
     )
 
     const renderSelectField = ({
