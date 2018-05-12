@@ -14,6 +14,13 @@ import { connect } from 'react-redux';
 import { fetchEntries, newEntry, selectRows } from '../actions/contactActions';
 
 class ContactTable extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      open: false
+    }
+  }
 
   componentDidMount() {
     this.props.fetchEntries();
@@ -25,6 +32,11 @@ class ContactTable extends Component {
 
   handleRowSelection(selectedRows) {
     this.props.selectRows(selectedRows);
+  }
+
+  handleEditClick = () => {
+    console.log('CLICKED ON EDIT CONTACT ROW ICON')
+    return <ContactsForm />
   }
   
   render(){
@@ -38,7 +50,7 @@ class ContactTable extends Component {
         <TableRowColumn>{entry.status}</TableRowColumn>
         <TableRowColumn style={{ whiteSpace: 'normal', wordWrap: 'break-word'}}>{entry.notes}</TableRowColumn>
         <TableRowColumn>{entry.date}</TableRowColumn>
-        <TableRowColumn><FontIcon className='far fa-edit' style={{fontSize: '1.2em'}} /></TableRowColumn>
+        <TableRowColumn><FontIcon className='far fa-edit' style={{fontSize: '1.2em', cursor: 'pointer'}} onClick={this.handleEditClick} /></TableRowColumn>
       </TableRow>
     ))
     return(

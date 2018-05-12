@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import FontIcon from 'material-ui/FontIcon';
-import { editCampaign } from '../actions/campaignActions';
+// import { editCampaign } from '../actions/campaignActions';
 import CampaignForm from './CampaignForm';
 
 class CampaignDetails extends Component {

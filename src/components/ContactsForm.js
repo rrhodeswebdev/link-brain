@@ -33,6 +33,7 @@ class ContactsForm extends Component {
 
   render(){
     const submit = this.props.handleSubmit(this.props.onSubmit);
+
     const actions = [
       <FlatButton
         label='Cancel'
@@ -63,7 +64,12 @@ class ContactsForm extends Component {
       input,
       label
     }) => (
-      <AutoComplete floatingLabelText='Campaign' filter={AutoComplete.caseSensitiveFilter} dataSource={this.props.state.entries.campaign} />
+      <AutoComplete 
+      floatingLabelText={label}
+      filter={AutoComplete.caseSensitiveFilter} 
+      dataSource={fake} 
+      {...input}
+      />
     )
 
     const renderSelectField = ({
@@ -104,12 +110,13 @@ class ContactsForm extends Component {
             onClick = {() => this.handleDelete()}
           />
           <div className='auto-search-area'>
-            <AutoComplete
-              floatingLabelText='Search Contacts'
-              filter={AutoComplete.fuzzyFilter}
-              maxSearchResults={5}
-              dataSource={fake}
-            />
+            <form>
+              <Field
+                name='search'
+                label='Search'
+                component={renderAutoComplete}
+              />
+            </form>
           </div>
         </div>
         <div>

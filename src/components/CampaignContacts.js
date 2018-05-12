@@ -13,7 +13,7 @@ class CampaignContacts extends Component {
     //   console.log(campaign)
     // })
     console.log(contactCampaign)
-    
+
     return(
       <div>
         <CampaignDetails />
