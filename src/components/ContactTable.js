@@ -11,7 +11,7 @@ import ContactsForm from './ContactsForm';
 import FontIcon from 'material-ui/FontIcon';
 
 import { connect } from 'react-redux';
-import { fetchEntries, newEntry, selectRows } from '../actions/contactActions';
+import { newEntry, selectRows } from '../actions/contactActions';
 
 class ContactTable extends Component {
   constructor(props) {
@@ -20,10 +20,6 @@ class ContactTable extends Component {
     this.state = {
       open: false
     }
-  }
-
-  componentDidMount() {
-    this.props.fetchEntries();
   }
 
   createNewEntry(entry) {
@@ -88,4 +84,4 @@ const mapStateToProps = state => ({
   entries: state.entries.entries
 })
 
-export default connect(mapStateToProps, { fetchEntries, newEntry, selectRows })(ContactTable);
+export default connect(mapStateToProps, { newEntry, selectRows })(ContactTable);

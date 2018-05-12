@@ -1,6 +1,6 @@
 import { FETCH_ENTRIES, NEW_ENTRY, DELETE_ENTRY, ROW_SELECTED } from './types';
 
-export function fetchEntries() {
+export function fetchEntries(campaignId) {
   return function(dispatch) {
     //Make call to API once built
     //fetch('url')

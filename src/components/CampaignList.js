@@ -20,7 +20,7 @@ class CampaignList extends Component {
     ));
     return(
       <div className='campaign-list-area'>
-        <CampaignForm onSubmit = {values => this.createNewCampaign(values)} />
+        <CampaignForm onSubmit = {values => this.createNewCampaign(values)} className='fas fa-plus' backgroundColor='#4CAF50' />
         <div className='campaign-list-group'>
           {campaign}
         </div>
