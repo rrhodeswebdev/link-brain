@@ -51,8 +51,8 @@ class CampaignForm extends Component {
       <div className='campaign-editing-area'>
         <FlatButton
           backgroundColor={this.props.backgroundColor}
-          hoverColor='#81C784'
-          icon={<FontIcon style={{color: 'white', fontSize: '1.2em'}} className={this.props.className} />}
+          hoverColor={this.props.hoverColor}
+          icon={<FontIcon style={this.props.style} className={this.props.className} />}
           onClick={this.handleOpen}
         />
          <div>

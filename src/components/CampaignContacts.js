@@ -23,7 +23,6 @@ class CampaignContacts extends Component {
     // const filteredCampaign = campaignId.filter(campaign => {
     //   console.log(campaign)
     // })
-    console.log(contactCampaign)
 
     if(!this.props.campaign){
       return <div>Loading</div>

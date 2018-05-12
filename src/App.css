@@ -58,14 +58,13 @@
 
 .campaign-list-group{
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   margin: 0 20px;
 }
 
 .campaign-boxes-list{
   display: flex;
-  align-items: flex-start;
 }
 
 .toolbar-separator-campaign-detail{
@@ -96,4 +95,10 @@
   display: flex;
   margin: 40px 0 0 40px;
   width: 20%;
+}
+
+.campaign-h2{
+  margin: 20px 40px;
+  font-weight: 300;
+  font-size: 28px;
 }

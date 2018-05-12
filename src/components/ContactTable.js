@@ -42,7 +42,7 @@ class ContactTable extends Component {
         <TableRowColumn>{entry.email}</TableRowColumn>
         <TableRowColumn>{entry.website}</TableRowColumn>
         <TableRowColumn>{entry.linkurl}</TableRowColumn>
-        <TableRowColumn>{entry.campaign}</TableRowColumn>
+        {/* <TableRowColumn>{entry.campaign}</TableRowColumn> */}
         <TableRowColumn>{entry.status}</TableRowColumn>
         <TableRowColumn style={{ whiteSpace: 'normal', wordWrap: 'break-word'}}>{entry.notes}</TableRowColumn>
         <TableRowColumn>{entry.date}</TableRowColumn>
@@ -64,7 +64,7 @@ class ContactTable extends Component {
                 <TableHeaderColumn>Email</TableHeaderColumn>
                 <TableHeaderColumn>Website</TableHeaderColumn>
                 <TableHeaderColumn>Linking URL</TableHeaderColumn>
-                <TableHeaderColumn>Campaign</TableHeaderColumn>
+                {/* <TableHeaderColumn>Campaign</TableHeaderColumn> */}
                 <TableHeaderColumn>Status</TableHeaderColumn>
                 <TableHeaderColumn>Notes</TableHeaderColumn>
                 <TableHeaderColumn>Last Updated</TableHeaderColumn>

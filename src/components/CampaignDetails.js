@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
-// import FontIcon from 'material-ui/FontIcon';
-// import { editCampaign } from '../actions/campaignActions';
 import CampaignForm from './CampaignForm';
 
 class CampaignDetails extends Component {
@@ -43,7 +41,13 @@ class CampaignDetails extends Component {
               <ToolbarTitle className='campaign-detail-text' text='Successful Links: 4' style={{fontSize: '14px'}} />
             </ToolbarGroup>
             <ToolbarGroup lastChild={true} style={{marginRight: '20px'}}>
-            <CampaignForm onSubmit = {values => this.editCampaign(values)} className='far fa-edit' backgroundColor='#ffffff'/>
+            <CampaignForm 
+              onSubmit = {values => this.editCampaign(values)} 
+              className='far fa-edit' 
+              backgroundColor='#1565C0' 
+              hoverColor='#1E88E5' 
+              style={{color: 'white', fontSize: '1.2em', paddingBottom: '5px'}}
+            />
             </ToolbarGroup>
         </Toolbar>
       </div>
