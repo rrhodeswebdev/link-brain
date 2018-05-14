@@ -26,7 +26,18 @@ class CampaignDetails extends Component {
     //setup action and reducer
   }
 
+  loadData = (data) => {
+    console.log('LOADING DATA')
+    console.log(data)
+  }
+
   render(){
+
+    const data = {
+      name: this.props.campaign.name,
+      url: this.props.campaign.url
+    }
+
     return(
       <div>
         <Toolbar>
@@ -42,6 +53,7 @@ class CampaignDetails extends Component {
             </ToolbarGroup>
             <ToolbarGroup lastChild={true} style={{marginRight: '20px'}}>
             <CampaignForm 
+              onOpen = {(data) => this.loadData({data})}
               onSubmit = {values => this.editCampaign(values)} 
               className='far fa-edit' 
               backgroundColor='#1565C0' 

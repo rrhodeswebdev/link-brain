@@ -1,4 +1,4 @@
-import { FETCH_CAMPAIGNS, NEW_CAMPAIGN, EDIT_CAMPAIGN, ACTIVE_CAMPAIGN } from './types';
+import { FETCH_CAMPAIGNS, NEW_CAMPAIGN, EDIT_CAMPAIGN, ACTIVE_CAMPAIGN, LOAD_CAMPAIGN } from './types';
 
 export function fetchCampaigns() {
   return function(dispatch) {
@@ -31,4 +31,9 @@ export const editCampaign = campaign => ({
 export const setActiveCampaign = campaign => ({
   type: ACTIVE_CAMPAIGN,
   campaign
+})
+
+export const loadCampaign = data => ({
+  type: LOAD_CAMPAIGN,
+  data
 })

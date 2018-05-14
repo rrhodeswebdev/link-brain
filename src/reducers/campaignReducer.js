@@ -1,4 +1,4 @@
-import { FETCH_CAMPAIGNS, NEW_CAMPAIGN, EDIT_CAMPAIGN, ACTIVE_CAMPAIGN } from '../actions/types';
+import { FETCH_CAMPAIGNS, NEW_CAMPAIGN, EDIT_CAMPAIGN, ACTIVE_CAMPAIGN, LOAD_CAMPAIGN } from '../actions/types';
 
 const initialState = {
   campaigns: [
@@ -21,7 +21,8 @@ const initialState = {
       id: 3
     }
   ],
-  campaign: null
+  campaign: null,
+  data: {}
 }
 
 export default function(state = initialState, action) {
@@ -45,6 +46,11 @@ export default function(state = initialState, action) {
       return {
         ...state, 
         campaign: action.campaign
+      }
+    case LOAD_CAMPAIGN:
+      return {
+        ...state, 
+        data: action.data
       }
     default:
       return state;

@@ -4,7 +4,7 @@ import FontIcon from 'material-ui/FontIcon';
 import TextField from 'material-ui/TextField';
 import Dialog from 'material-ui/Dialog';
 import { Field, reduxForm } from 'redux-form';
-import { newCampaign } from '../actions/campaignActions';
+import { newCampaign, loadCampaign } from '../actions/campaignActions';
 
 class CampaignForm extends Component {
   constructor(props){
@@ -85,4 +85,4 @@ class CampaignForm extends Component {
 
 export default reduxForm({
   form: 'CampaignForm'
-}, null, { newCampaign })(CampaignForm)
+}, null, { newCampaign, loadCampaign })(CampaignForm)
