@@ -57,7 +57,7 @@ class CampaignForm extends Component {
         />
          <div>
             <Dialog
-              title='Create a new campaign'
+              title= {this.props.title}
               actions={actions}
               modal={true}
               open={this.state.open}

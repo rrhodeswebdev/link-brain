@@ -12,9 +12,7 @@ class CampaignDetails extends Component {
   }
   
   handleOpen = () => {
-    console.log('CLICKED EDIT CAMPAIGN')
     this.setState({open: true})
-    return <CampaignForm />
   };
 
   handleClose = () => {
@@ -59,6 +57,7 @@ class CampaignDetails extends Component {
               backgroundColor='#1565C0' 
               hoverColor='#1E88E5' 
               style={{color: 'white', fontSize: '1.2em', paddingBottom: '5px'}}
+              title = 'Edit Campaign'
             />
             </ToolbarGroup>
         </Toolbar>

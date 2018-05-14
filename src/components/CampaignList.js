@@ -21,6 +21,7 @@ class CampaignList extends Component {
     ));
 
     const headerDivider = <Divider style={{marginLeft: '40px', marginRight: '40px'}}/>;
+
     return(
       <div className='campaign-list-area'>
         <CampaignForm onSubmit = {values => this.createNewCampaign(values)} 
@@ -28,6 +29,7 @@ class CampaignList extends Component {
           backgroundColor='#4CAF50' 
           hoverColor='#81C784' 
           style={{color: 'white', fontSize: '1.2em'}} 
+          title = 'Create A New Campaign'
         />
         <h2 className='campaign-h2'>Live Campaigns</h2>
           {headerDivider}
