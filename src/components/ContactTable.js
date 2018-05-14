@@ -32,7 +32,6 @@ class ContactTable extends Component {
 
   handleEditClick = () => {
     console.log('CLICKED ON EDIT CONTACT ROW ICON')
-    return <ContactsForm />
   }
   
   render(){

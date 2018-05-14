@@ -22,8 +22,11 @@ class CampaignForm extends Component {
   handleClose = () => {
     this.setState({open: false})
   };
+
   render(){
+
     const submit = this.props.handleSubmit(this.props.onSubmit);
+    
     const renderTextField = ({
       input,
       label,
@@ -47,6 +50,7 @@ class CampaignForm extends Component {
         onClick={() => {submit(); this.props.reset(); this.handleClose();}}
       />
     ];
+
     return(
       <div className='campaign-editing-area'>
         <FlatButton

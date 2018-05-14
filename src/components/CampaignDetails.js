@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import CampaignForm from './CampaignForm';
+import { editCampaign } from '../actions/campaignActions';
 
 class CampaignDetails extends Component {
   constructor(props) {
@@ -22,6 +24,7 @@ class CampaignDetails extends Component {
   editCampaign = (values) => {
     console.log('VALUES: ', values)
     //setup action and reducer
+    this.props.editCampaign(values)
   }
 
   loadData = (data) => {
@@ -34,7 +37,7 @@ class CampaignDetails extends Component {
     const data = {
       name: this.props.campaign.name,
       url: this.props.campaign.url
-    }
+    };
 
     return(
       <div>
@@ -58,6 +61,7 @@ class CampaignDetails extends Component {
               hoverColor='#1E88E5' 
               style={{color: 'white', fontSize: '1.2em', paddingBottom: '5px'}}
               title = 'Edit Campaign'
+              data = {data}
             />
             </ToolbarGroup>
         </Toolbar>
@@ -66,4 +70,8 @@ class CampaignDetails extends Component {
   }
 }
 
-export default CampaignDetails;
+const mapStateToProps = (state) => {
+  data: state.campaigns.data
+}
+
+export default connect(mapStateToProps, { editCampaign })(CampaignDetails);
