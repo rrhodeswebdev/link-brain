@@ -17,7 +17,7 @@ class CampaignList extends Component {
 
   render(){
     const campaign = this.props.campaigns.map(campaign => (
-      <CampaignListItem {...campaign} />
+      <CampaignListItem {...campaign} key={campaign.id}/>
     ));
 
     const headerDivider = <Divider style={{marginLeft: '40px', marginRight: '40px'}}/>;
