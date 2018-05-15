@@ -37,7 +37,8 @@ const initialState = {
     }
   ],
   entry: {},
-  selectedRows: []
+  selectedRows: [],
+  data: {}
 }
 
 export default function(state = initialState, action) {

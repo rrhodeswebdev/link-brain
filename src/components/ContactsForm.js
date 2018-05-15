@@ -23,7 +23,7 @@ class ContactsForm extends Component {
       <FlatButton
         label='Cancel'
         primary={true}
-        onClick={this.props.handleClose}
+        onClick={() => {this.props.reset(); this.props.handleClose();}}
       />,
       <FlatButton
         label='Submit'
