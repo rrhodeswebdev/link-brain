@@ -46,7 +46,7 @@ class ContactTable extends Component {
         <TableRowColumn style={{ whiteSpace: 'normal', wordWrap: 'break-word'}}>{entry.notes}</TableRowColumn>
         <TableRowColumn>{entry.date}</TableRowColumn>
         <TableRowColumn><FontIcon className='far fa-edit' style={{fontSize: '1.2em', cursor: 'pointer'}} onClick={this.handleEditClick} /></TableRowColumn>
-        <TableRowColumn><FontIcon className='far fa-caret-square-down' style={{fontSize: '1.2em', cursor: 'pointer'}} onClick={this.handleEditClick} /></TableRowColumn>
+        <TableRowColumn><FontIcon className='far fa-caret-square-down' style={{fontSize: '1.2em', cursor: 'pointer'}} /></TableRowColumn>
       </TableRow>
     ))
     return(
