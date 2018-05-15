@@ -33,12 +33,6 @@ class CampaignDetails extends Component {
   }
 
   render(){
-
-    const data = {
-      name: this.props.campaign.name,
-      url: this.props.campaign.url
-    };
-
     return(
       <div>
         <Toolbar>
@@ -61,7 +55,6 @@ class CampaignDetails extends Component {
               hoverColor='#1E88E5' 
               style={{color: 'white', fontSize: '1.2em', paddingBottom: '5px'}}
               title = 'Edit Campaign'
-              data = {data}
             />
             </ToolbarGroup>
         </Toolbar>

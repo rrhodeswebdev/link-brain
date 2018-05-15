@@ -4,6 +4,7 @@ import FontIcon from 'material-ui/FontIcon';
 import TextField from 'material-ui/TextField';
 import Dialog from 'material-ui/Dialog';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 import { newCampaign, loadCampaign } from '../actions/campaignActions';
 
 class CampaignForm extends Component {
@@ -87,6 +88,12 @@ class CampaignForm extends Component {
   
 }
 
-export default reduxForm({
+const mapStateToProps = state => ({
+  initialValues: state.campaigns.campaign
+});
+
+const campaignForm = reduxForm({
   form: 'CampaignForm'
-}, null, { newCampaign, loadCampaign })(CampaignForm)
+}, null, { newCampaign, loadCampaign })(CampaignForm);
+
+export default connect(mapStateToProps)(campaignForm);

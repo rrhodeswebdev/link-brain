@@ -11,21 +11,6 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 
 class ContactsForm extends Component {
-  constructor(props){
-    super(props)
-
-    this.state = {
-      open: false
-    };
-  }
-
-  handleOpen = () => {
-    this.setState({open: true})
-  };
-
-  handleClose = () => {
-    this.setState({open: false})
-  };
 
   handleDelete() {
     this.props.dispatch(deleteEntries())
@@ -38,12 +23,12 @@ class ContactsForm extends Component {
       <FlatButton
         label='Cancel'
         primary={true}
-        onClick={this.handleClose}
+        onClick={this.props.handleClose}
       />,
       <FlatButton
         label='Submit'
         primary={true}
-        onClick={() => {submit(); this.props.reset(); this.handleClose();}}
+        onClick={() => {submit(); this.props.reset(); this.props.handleClose();}}
       />
     ];
 
@@ -99,7 +84,7 @@ class ContactsForm extends Component {
             className='add-new-contact-btn' 
             label='Add New Contact' 
             labelColor='#FAFAFA'
-            onClick={this.handleOpen}
+            onClick={this.props.handleOpen}
             backgroundColor='#7CB342'
           />
           <RaisedButton 
@@ -124,7 +109,7 @@ class ContactsForm extends Component {
             title='Create a new contact'
             actions={actions}
             modal={true}
-            open={this.state.open}
+            open={this.props.open}
             bodyClassName='add-new-contact-modal'
           >
             <form onSubmit = {this.props.handleSubmit}>

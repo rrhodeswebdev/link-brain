@@ -11,7 +11,7 @@ import ContactsForm from './ContactsForm';
 import FontIcon from 'material-ui/FontIcon';
 
 import { connect } from 'react-redux';
-import { newEntry, selectRows } from '../actions/contactActions';
+import { selectRows } from '../actions/contactActions';
 
 class ContactTable extends Component {
   constructor(props) {
@@ -22,16 +22,13 @@ class ContactTable extends Component {
     }
   }
 
-  createNewEntry(entry) {
-    this.props.newEntry(entry);
-  }
-
   handleRowSelection(selectedRows) {
     this.props.selectRows(selectedRows);
   }
 
   handleEditClick = () => {
     console.log('CLICKED ON EDIT CONTACT ROW ICON')
+    this.props.handleOpen()
   }
   
   render(){
@@ -50,8 +47,6 @@ class ContactTable extends Component {
       </TableRow>
     ))
     return(
-      <div>
-        <ContactsForm onSubmit = {values => this.createNewEntry(values)} />
         <div className='contact-table-area'>
           <Table style={{ tableLayout: 'auto' }} 
             fixedHeader={false} 
@@ -75,7 +70,6 @@ class ContactTable extends Component {
             </TableBody>
           </Table>
         </div>
-      </div>
     )
   }
 }
@@ -84,4 +78,4 @@ const mapStateToProps = state => ({
   entries: state.entries.entries
 })
 
-export default connect(mapStateToProps, { newEntry, selectRows })(ContactTable);
+export default connect(mapStateToProps, { selectRows })(ContactTable);

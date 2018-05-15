@@ -40,7 +40,7 @@ export default function(state = initialState, action) {
     case EDIT_CAMPAIGN:
       return {
         ...state,
-        campaign: action.payload
+        campaign: action.campaign
       }
     case ACTIVE_CAMPAIGN:
       return {
