@@ -17,9 +17,9 @@ class CampaignContacts extends Component {
   }
   
   render() {
-    const contactCampaign = this.props.entries.map(entry => {
-      return entry.campaign
-    });
+    // const contactCampaign = this.props.entries.map(entry => {
+    //   return entry.campaign
+    // });
     // const filteredCampaign = campaignId.filter(campaign => {
     //   console.log(campaign)
     // })

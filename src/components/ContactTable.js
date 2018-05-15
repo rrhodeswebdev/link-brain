@@ -7,7 +7,6 @@ import {
   TableRow,
   TableRowColumn
 } from 'material-ui/Table';
-import ContactsForm from './ContactsForm';
 import FontIcon from 'material-ui/FontIcon';
 
 import { connect } from 'react-redux';

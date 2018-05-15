@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ContactTable from './ContactTable';
 import ContactsForm from './ContactsForm';
-import { newEntry } from '../actions/contactActions';
+import { newEntry, editEntry } from '../actions/contactActions';
 
 class Contacts extends Component {
   constructor(props){
@@ -25,10 +25,10 @@ class Contacts extends Component {
   createNewEntry(entry) {
     console.log(this.state.edit)
     if(this.state.edit) {
-      // this.props.editEntry(entry)
+      this.props.editEntry(entry)
     }
     this.props.newEntry(entry);
-  }
+  };
 
   render() {
     return(
@@ -37,7 +37,8 @@ class Contacts extends Component {
           onSubmit = {values => this.createNewEntry(values)} 
           open={this.state.open} 
           handleOpen={() => this.handleOpen(false)} 
-          handleClose={() => this.handleClose()}  
+          handleClose={() => this.handleClose()}
+          title = 'Edit Contact'
         />
         <ContactTable 
           handleOpen={() => this.handleOpen(true)}
@@ -48,7 +49,7 @@ class Contacts extends Component {
 }
 
 const mapStateToProps = state => ({
-
+  entries: state.entries.entries
 })
 
 export default connect(mapStateToProps, { newEntry })(Contacts);

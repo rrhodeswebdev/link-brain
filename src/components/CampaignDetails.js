@@ -22,15 +22,8 @@ class CampaignDetails extends Component {
   };
 
   editCampaign = (values) => {
-    console.log('VALUES: ', values)
-    //setup action and reducer
     this.props.editCampaign(values)
-  }
-
-  loadData = (data) => {
-    console.log('LOADING DATA')
-    console.log(data)
-  }
+  };
 
   render(){
     return(
@@ -48,7 +41,6 @@ class CampaignDetails extends Component {
             </ToolbarGroup>
             <ToolbarGroup lastChild={true} style={{marginRight: '20px'}}>
             <CampaignForm 
-              onOpen = {(data) => this.loadData({data})}
               onSubmit = {values => this.editCampaign(values)} 
               className='far fa-edit' 
               backgroundColor='#1565C0' 
@@ -63,8 +55,4 @@ class CampaignDetails extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  data: state.campaigns.data
-}
-
-export default connect(mapStateToProps, { editCampaign })(CampaignDetails);
+export default connect(null, { editCampaign })(CampaignDetails);

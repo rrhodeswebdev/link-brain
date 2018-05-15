@@ -1,4 +1,4 @@
-import { FETCH_ENTRIES, NEW_ENTRY, DELETE_ENTRY, ROW_SELECTED } from './types';
+import { FETCH_ENTRIES, NEW_ENTRY, DELETE_ENTRY, ROW_SELECTED, EDIT_ENTRY, LOAD_ENTRY } from './types';
 
 export function fetchEntries(campaignId) {
   return function(dispatch) {
@@ -25,6 +25,16 @@ export const selectRows = selectedRows => ({
 export const deleteEntries = () => ({
   type: DELETE_ENTRY
 })
+
+export const editEntry = (entry) => ({
+  type: EDIT_ENTRY,
+  entry
+})
+
+export const loadEntry = (data) => {
+  type: LOAD_ENTRY,
+  data
+}
 
 // export function newEntry(entry) {
 //   return function(dispatch) {

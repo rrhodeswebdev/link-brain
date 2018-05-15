@@ -6,7 +6,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import AutoComplete from 'material-ui/AutoComplete';
-import { deleteEntries } from '../actions/contactActions';
+import { deleteEntries, loadEntry } from '../actions/contactActions';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 
@@ -106,7 +106,7 @@ class ContactsForm extends Component {
         </div>
         <div>
           <Dialog
-            title='Create a new contact'
+            title={this.props.title}
             actions={actions}
             modal={true}
             open={this.props.open}
@@ -171,13 +171,12 @@ class ContactsForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  
+  initialValues: state.entries.entry
 })
 
-const connectedForm = connect(mapStateToProps)(ContactsForm);
-
-const ReduxForm = reduxForm({
+const entryForm = reduxForm({
   form: 'ContactsForm'
-}, null)(connectedForm)
+}, null, { deleteEntries, loadEntry })(ContactsForm)
 
-export default ReduxForm;
+
+export default connect(mapStateToProps)(entryForm);
