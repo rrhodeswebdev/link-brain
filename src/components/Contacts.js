@@ -10,24 +10,25 @@ class Contacts extends Component {
 
     this.state = {
       open: false,
-      edit: false
+      edit: false,
+      title: 'new'
     };
   }
 
   handleOpen = (edit) => {
-    this.setState({open: true, edit: edit})
+    this.setState({open: true, edit: edit, title: edit ? 'Edit': 'Add'})
   };
 
   handleClose = () => {
-    this.setState({open: false})
+    this.setState({open: false, edit: false})
   };
 
   createNewEntry(entry) {
-    console.log(this.state.edit)
     if(this.state.edit) {
       this.props.editEntry(entry)
+    } else {
+      this.props.newEntry(entry);
     }
-    this.props.newEntry(entry);
   };
 
   render() {
@@ -38,7 +39,7 @@ class Contacts extends Component {
           open={this.state.open} 
           handleOpen={() => this.handleOpen(false)} 
           handleClose={() => this.handleClose()}
-          title = 'Edit Contact'
+          title = {this.state.title}
         />
         <ContactTable 
           handleOpen={() => this.handleOpen(true)}
@@ -52,5 +53,5 @@ const mapStateToProps = state => ({
   entries: state.entries.entries
 })
 
-export default connect(mapStateToProps, { newEntry })(Contacts);
+export default connect(mapStateToProps, { newEntry, editEntry })(Contacts);
 

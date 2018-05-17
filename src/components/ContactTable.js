@@ -10,7 +10,7 @@ import {
 import FontIcon from 'material-ui/FontIcon';
 
 import { connect } from 'react-redux';
-import { selectRows } from '../actions/contactActions';
+import { selectRows, loadEntry } from '../actions/contactActions';
 
 class ContactTable extends Component {
   constructor(props) {
@@ -25,8 +25,9 @@ class ContactTable extends Component {
     this.props.selectRows(selectedRows);
   }
 
-  handleEditClick = () => {
+  handleEditClick = (entry) => {
     console.log('CLICKED ON EDIT CONTACT ROW ICON')
+    this.props.loadEntry(entry)
     this.props.handleOpen()
   }
   
@@ -41,7 +42,7 @@ class ContactTable extends Component {
         <TableRowColumn>{entry.status}</TableRowColumn>
         <TableRowColumn style={{ whiteSpace: 'normal', wordWrap: 'break-word'}}>{entry.notes}</TableRowColumn>
         <TableRowColumn>{entry.date}</TableRowColumn>
-        <TableRowColumn><FontIcon className='far fa-edit' style={{fontSize: '1.2em', cursor: 'pointer'}} onClick={this.handleEditClick} /></TableRowColumn>
+        <TableRowColumn><FontIcon className='far fa-edit' style={{fontSize: '1.2em', cursor: 'pointer'}} onClick={() => this.handleEditClick(entry)} /></TableRowColumn>
         <TableRowColumn><FontIcon className='far fa-caret-square-down' style={{fontSize: '1.2em', cursor: 'pointer'}} /></TableRowColumn>
       </TableRow>
     ))
@@ -74,7 +75,7 @@ class ContactTable extends Component {
 }
 
 const mapStateToProps = state => ({
-  entries: state.entries.entries
+  entries: state.entries.entries,
 })
 
-export default connect(mapStateToProps, { selectRows })(ContactTable);
+export default connect(mapStateToProps, { selectRows, loadEntry })(ContactTable);

@@ -36,9 +36,8 @@ const initialState = {
       id: 3
     }
   ],
-  entry: {},
-  selectedRows: [],
-  data: {}
+  entry: null,
+  selectedRows: []
 }
 
 export default function(state = initialState, action) {
@@ -72,14 +71,20 @@ export default function(state = initialState, action) {
         selectedRows: action.selectedRows
       }
     case EDIT_ENTRY:
+      let entries = [...state.entries];
+      let entryToUpdate = entries.findIndex((e) => {
+        return e.id === action.entry.id
+      })
+      entries.splice(entryToUpdate, 1, action.entry)
       return {
         ...state,
-        entries: action.entry
+        entries: entries,
+        entry: null
       }
     case LOAD_ENTRY:
       return {
         ...state, 
-        data: action.data
+        entry: action.data
       }
     default: 
       return state;

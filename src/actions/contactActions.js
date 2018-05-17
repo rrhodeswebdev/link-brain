@@ -31,10 +31,10 @@ export const editEntry = (entry) => ({
   entry
 })
 
-export const loadEntry = (data) => {
+export const loadEntry = (data) => ({
   type: LOAD_ENTRY,
   data
-}
+})
 
 // export function newEntry(entry) {
 //   return function(dispatch) {

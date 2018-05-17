@@ -7,7 +7,7 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import AutoComplete from 'material-ui/AutoComplete';
 import { deleteEntries, loadEntry } from '../actions/contactActions';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, reset } from 'redux-form';
 import { connect } from 'react-redux';
 
 class ContactsForm extends Component {
@@ -23,12 +23,12 @@ class ContactsForm extends Component {
       <FlatButton
         label='Cancel'
         primary={true}
-        onClick={() => {this.props.reset(); this.props.handleClose();}}
+        onClick={() => {this.props.reset('ContactsForm'); this.props.handleClose();}}
       />,
       <FlatButton
         label='Submit'
         primary={true}
-        onClick={() => {submit(); this.props.reset(); this.props.handleClose();}}
+        onClick={() => {submit(); this.props.reset('ContactsForm'); this.props.handleClose();}}
       />
     ];
 
@@ -176,7 +176,7 @@ const mapStateToProps = state => ({
 
 const entryForm = reduxForm({
   form: 'ContactsForm'
-}, null, { deleteEntries, loadEntry })(ContactsForm)
+}, null, { deleteEntries, loadEntry, reset })(ContactsForm)
 
 
 export default connect(mapStateToProps)(entryForm);
