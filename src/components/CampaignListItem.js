@@ -26,7 +26,7 @@ class CampaignListItem extends Component {
                 subtitle={this.props.url}
               />
               <CardText>
-                <span>Created on: {this.props.date}</span>
+                <span>Created on: {this.props.created}</span>
               </CardText>
             </Card>
           </div>

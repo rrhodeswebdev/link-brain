@@ -78,7 +78,7 @@ class CampaignForm extends Component {
                 name='url'
                 label='URL'
                 component={renderTextField}
-              />
+                />
               </form>
             </Dialog>
           </div>
