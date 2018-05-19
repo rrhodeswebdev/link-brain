@@ -12,7 +12,6 @@ class CampaignList extends Component {
   }
 
   createNewCampaign(campaign) {
-    console.log('CREATING: ', campaign)
     this.props.newCampaign(campaign);
   }
 

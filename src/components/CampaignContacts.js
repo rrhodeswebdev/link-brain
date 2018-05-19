@@ -8,12 +8,14 @@ import { setActiveCampaign } from '../actions/campaignActions';
 class CampaignContacts extends Component {
   
   componentDidMount() {
-    let campaignId = this.props.match.params.id;
+    let campaignId = this.props.match.params._id;
+      console.log(campaignId)
     let campaign = this.props.campaigns.find((campaign) => {
-      return campaign.id === +campaignId
+      return campaign._id === +campaignId
     });
+      console.log(campaign)
     this.props.setActiveCampaign(campaign)
-    this.props.fetchEntries(campaign.id)
+    this.props.fetchEntries(campaign._id)
   }
   
   render() {

@@ -32,7 +32,7 @@ class CampaignListItem extends Component {
           </div>
         )
       } else {
-        return(<Redirect to={`/dashboard/campaign/${this.props.id}`} />)
+        return(<Redirect to={`/dashboard/campaign/${this.props._id}`} />)
       }
   }
 }

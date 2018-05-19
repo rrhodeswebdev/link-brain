@@ -40,14 +40,14 @@ class CampaignDetails extends Component {
               <ToolbarTitle className='campaign-detail-text' text='Successful Links: 4' style={{fontSize: '14px'}} />
             </ToolbarGroup>
             <ToolbarGroup lastChild={true} style={{marginRight: '20px'}}>
-            <CampaignForm 
-              onSubmit = {values => this.editCampaign(values)} 
-              className='far fa-edit' 
-              backgroundColor='#1565C0' 
-              hoverColor='#1E88E5' 
-              style={{color: 'white', fontSize: '1.2em', paddingBottom: '5px'}}
-              title = 'Edit Campaign'
-            />
+              <CampaignForm 
+                onSubmit = {values => this.editCampaign(values)} 
+                className='far fa-edit' 
+                backgroundColor='#1565C0' 
+                hoverColor='#1E88E5' 
+                style={{color: 'white', fontSize: '1.2em', paddingBottom: '5px'}}
+                title = 'Edit Campaign'
+              />
             </ToolbarGroup>
         </Toolbar>
       </div>
