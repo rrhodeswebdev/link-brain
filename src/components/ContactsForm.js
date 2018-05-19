@@ -23,12 +23,12 @@ class ContactsForm extends Component {
       <FlatButton
         label='Cancel'
         primary={true}
-        onClick={() => {this.props.reset('ContactsForm'); this.props.handleClose();}}
+        onClick={() => {this.props.reset(); this.props.handleClose();}}
       />,
       <FlatButton
         label='Submit'
         primary={true}
-        onClick={() => {submit(); this.props.reset('ContactsForm'); this.props.handleClose();}}
+        onClick={() => {submit(); this.props.reset(); this.props.handleClose();}}
       />
     ];
 

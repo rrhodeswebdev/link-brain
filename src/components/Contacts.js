@@ -16,7 +16,7 @@ class Contacts extends Component {
   }
 
   handleOpen = (edit) => {
-    this.setState({open: true, edit: edit, title: edit ? 'Edit': 'Add'})
+    this.setState({open: true, edit: edit, title: edit ? 'Edit Contact': 'Add New Contact'})
   };
 
   handleClose = () => {
