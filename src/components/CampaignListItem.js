@@ -1,20 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
+import { Redirect } from 'react-router-dom';
 
-function CampaignListItem() {
-    return(
-      <div className='campaign-boxes-list'>
-        <Card className='campaign-card'>
-          <CardTitle 
-            title='Campaign 1'
-            subtitle='Blog Post'
-          />
-          <CardText>
-            <span>Created on: Date</span>
-          </CardText>
-        </Card>
-      </div>
-    )
+class CampaignListItem extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      clicked: false
+    }
   }
+  
+  handleCampaignClick(event) {
+    this.setState({
+      clicked: true
+    })
+  }
+    render(){
+      if(!this.state.clicked) {
+        return(
+          <div className='campaign-boxes-list'>
+            <Card className='campaign-card' onClick={() => this.handleCampaignClick()}>
+              <CardTitle 
+                title={this.props.name}
+                subtitle={this.props.url}
+              />
+              <CardText>
+                <span>Created on: {this.props.created}</span>
+              </CardText>
+            </Card>
+          </div>
+        )
+      } else {
+        return(<Redirect to={`/dashboard/campaign/${this.props._id}`} />)
+      }
+  }
+}
 
 export default CampaignListItem;

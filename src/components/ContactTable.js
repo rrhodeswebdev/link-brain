@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Table,
   TableHeader,
@@ -7,38 +7,75 @@ import {
   TableRow,
   TableRowColumn
 } from 'material-ui/Table';
+import FontIcon from 'material-ui/FontIcon';
 
-function ContactTable() {
-  return(
-    <div className='contact-table-area'>
-      <Table style={{ tableLayout: 'auto' }} fixedHeader={false}>
-        <TableHeader>
-          <TableRow>
-            <TableHeaderColumn>Name</TableHeaderColumn>
-            <TableHeaderColumn>Email</TableHeaderColumn>
-            <TableHeaderColumn>Website</TableHeaderColumn>
-            <TableHeaderColumn>Linking URL</TableHeaderColumn>
-            <TableHeaderColumn>Campaign</TableHeaderColumn>
-            <TableHeaderColumn>Status</TableHeaderColumn>
-            <TableHeaderColumn>Notes</TableHeaderColumn>
-            <TableHeaderColumn>Last Updated</TableHeaderColumn>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          <TableRow hoverable={true}>
-            <TableRowColumn>Ryan Rhodes</TableRowColumn>
-            <TableRowColumn>rrhodes.webdev@gmail.com</TableRowColumn>
-            <TableRowColumn>ryanrhodeswebdev.com</TableRowColumn>
-            <TableRowColumn>ryanrhodeswebdev.com/blog/cool-ideas</TableRowColumn>
-            <TableRowColumn>Campaign 1</TableRowColumn>
-            <TableRowColumn>New Contact</TableRowColumn>
-            <TableRowColumn style={{ whiteSpace: 'normal', wordWrap: 'break-word'}}>Adding a simple note for the contact</TableRowColumn>
-            <TableRowColumn>04/28/18</TableRowColumn>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </div>
-  )
+import { connect } from 'react-redux';
+import { selectRows, loadEntry } from '../actions/contactActions';
+
+class ContactTable extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      open: false
+    }
+  }
+
+  handleRowSelection(selectedRows) {
+    this.props.selectRows(selectedRows);
+  }
+
+  handleEditClick = (entry) => {
+    console.log('CLICKED ON EDIT CONTACT ROW ICON')
+    this.props.loadEntry(entry)
+    this.props.handleOpen()
+  }
+  
+  render(){
+    const tableEntries = this.props.entries.map(entry => (
+      <TableRow hoverable={true} key={entry.id}>
+        <TableRowColumn>{entry.name}</TableRowColumn>
+        <TableRowColumn>{entry.email}</TableRowColumn>
+        <TableRowColumn>{entry.website}</TableRowColumn>
+        <TableRowColumn>{entry.linkurl}</TableRowColumn>
+        {/* <TableRowColumn>{entry.campaign}</TableRowColumn> */}
+        <TableRowColumn>{entry.status}</TableRowColumn>
+        <TableRowColumn style={{ whiteSpace: 'normal', wordWrap: 'break-word'}}>{entry.notes}</TableRowColumn>
+        <TableRowColumn>{entry.date}</TableRowColumn>
+        <TableRowColumn><FontIcon className='far fa-edit' style={{fontSize: '1.2em', cursor: 'pointer'}} onClick={() => this.handleEditClick(entry)} /></TableRowColumn>
+        <TableRowColumn><FontIcon className='far fa-caret-square-down' style={{fontSize: '1.2em', cursor: 'pointer'}} /></TableRowColumn>
+      </TableRow>
+    ))
+    return(
+        <div className='contact-table-area'>
+          <Table style={{ tableLayout: 'auto' }} 
+            fixedHeader={false} 
+            multiSelectable={true} 
+            onRowSelection={selected => this.handleRowSelection(selected)} 
+          >
+            <TableHeader>
+              <TableRow>
+                <TableHeaderColumn>Name</TableHeaderColumn>
+                <TableHeaderColumn>Email</TableHeaderColumn>
+                <TableHeaderColumn>Website</TableHeaderColumn>
+                <TableHeaderColumn>Linking URL</TableHeaderColumn>
+                {/* <TableHeaderColumn>Campaign</TableHeaderColumn> */}
+                <TableHeaderColumn>Status</TableHeaderColumn>
+                <TableHeaderColumn>Notes</TableHeaderColumn>
+                <TableHeaderColumn>Last Updated</TableHeaderColumn>
+              </TableRow>
+            </TableHeader>
+            <TableBody deselectOnClickaway={false}>
+              {tableEntries}
+            </TableBody>
+          </Table>
+        </div>
+    )
+  }
 }
 
-export default ContactTable;
+const mapStateToProps = state => ({
+  entries: state.entries.entries,
+})
+
+export default connect(mapStateToProps, { selectRows, loadEntry })(ContactTable);

@@ -6,38 +6,74 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import AutoComplete from 'material-ui/AutoComplete';
+import { deleteEntries, loadEntry } from '../actions/contactActions';
+import { Field, reduxForm, reset } from 'redux-form';
+import { connect } from 'react-redux';
 
 class ContactsForm extends Component {
-  constructor(props){
-    super(props)
 
-    this.state = {
-      open: false
-    };
-  }
-
-  handleOpen = () => {
-    this.setState({open: true})
-  };
-
-  handleClose = () => {
-    this.setState({open: false})
+  handleDelete() {
+    this.props.dispatch(deleteEntries())
   };
 
   render(){
+    const submit = this.props.handleSubmit(this.props.onSubmit);
+
     const actions = [
       <FlatButton
         label='Cancel'
         primary={true}
-        onClick={this.handleClose}
+        onClick={() => {this.props.reset(); this.props.handleClose();}}
       />,
       <FlatButton
         label='Submit'
         primary={true}
-        disabled={true}
-        onClick={this.handleClose}
+        onClick={() => {submit(); this.props.reset(); this.props.handleClose();}}
       />
     ];
+
+    const renderTextField = ({
+      input,
+      label,
+      meta: {touched, error }, ...custom
+    }) => (
+      <TextField
+        style={{margin: '0 10px'}}
+        floatingLabelText={label}
+        {...input}
+        {...custom}
+      />
+    )
+
+    const renderAutoComplete = ({
+      input,
+      label
+    }) => (
+      <AutoComplete 
+      floatingLabelText={label}
+      filter={AutoComplete.caseSensitiveFilter} 
+      dataSource={fake} 
+      {...input}
+      />
+    )
+
+    const renderSelectField = ({
+      input,
+      label,
+      meta: { touched, error },
+      children,
+      ...custom
+    }) => (
+      <SelectField
+        style={{margin: '0 10px'}}
+        floatingLabelText={label}
+        errorText={touched && error}
+        {...input}
+        onChange={(event, index, value) => input.onChange(value)}
+        children={children}
+        {...custom}
+      />
+    )
 
     const fake = ['fake', 'data', 'inserted', 'here', 'until', 'the', 'real', 'data', 'is', 'available'];
     
@@ -48,7 +84,7 @@ class ContactsForm extends Component {
             className='add-new-contact-btn' 
             label='Add New Contact' 
             labelColor='#FAFAFA'
-            onClick={this.handleOpen}
+            onClick={this.props.handleOpen}
             backgroundColor='#7CB342'
           />
           <RaisedButton 
@@ -56,61 +92,77 @@ class ContactsForm extends Component {
             label='Delete Contacts' 
             labelColor='#FAFAFA'
             backgroundColor='#EF5350'
+            onClick = {() => this.handleDelete()}
           />
-          <AutoComplete
-            floatingLabelText='Search Contacts'
-            filter={AutoComplete.fuzzyFilter}
-            maxSearchResults={5}
-            dataSource={fake}
-            className='contact-search-bar'
-          />
+          <div className='auto-search-area'>
+            <form>
+              <Field
+                name='search'
+                label='Search'
+                component={renderAutoComplete}
+              />
+            </form>
+          </div>
         </div>
         <div>
           <Dialog
-            title='Create a new contact'
+            title={this.props.title}
             actions={actions}
             modal={true}
-            open={this.state.open}
+            open={this.props.open}
             bodyClassName='add-new-contact-modal'
           >
-            <TextField
-              floatingLabelText='Name'
-              className='add-contact-text-field'
-            />
-            <TextField
-              floatingLabelText='Email'
-              className='add-contact-text-field'
-            />
-            <TextField
-              floatingLabelText='Website'
-              className='add-contact-text-field'
-            />
-            <TextField
-              floatingLabelText='Linking URL'
-              className='add-contact-text-field'
-            />
-            <TextField
-              floatingLabelText='Campaign'
-              className='add-contact-text-field'
-            />
-            <SelectField floatingLabelText='Status'>
-              <MenuItem value={1} primaryText='New Contact' />
-              <MenuItem value={2} primaryText='Needs More Research' />
-              <MenuItem value={3} primaryText='Awaiting Response' />
-              <MenuItem value={4} primaryText='Response Recieved' />
-              <MenuItem value={5} primaryText='Follow Up Needed' />
-              <MenuItem value={6} primaryText='Link Approved' />
-              <MenuItem value={7} primaryText='Link Denied' />
-              <MenuItem value={8} primaryText='Link Recieved' />
-              <MenuItem value={9} primaryText='Guest Post Approved' />
-              <MenuItem value={10} primaryText='Guest Post Denied' />
-            </SelectField>
-            <TextField
-              floatingLabelText='Notes'
-              multiLine={true}
-              rowsMax={4}
-              className='add-contact-text-field'
-            />
+            <form onSubmit = {this.props.handleSubmit}>
+              <Field 
+                name='name'
+                label='Name'
+                component={renderTextField}
+              />
+              <Field 
+                name='email'
+                label='Email'
+                component={renderTextField}
+              />
+              <Field 
+                name='website'
+                label='Website'
+                component={renderTextField}
+              />
+              <Field 
+                name='linkurl'
+                label='Linking URL'
+                component={renderTextField}
+              />
+              <Field 
+                name='campaign'
+                label='Campaign'
+                component={renderTextField}
+              />
+              <Field
+                  name="status"
+                  component={renderSelectField}
+                  label="Status"
+                >
+                <MenuItem value={'New Contact'} primaryText='New Contact' />
+                <MenuItem value={'Needs More Research'} primaryText='Needs More Research' />
+                <MenuItem value={'Awaiting Response'} primaryText='Awaiting Response' />
+                <MenuItem value={'Response Recieved'} primaryText='Response Recieved' />
+                <MenuItem value={'Follow Up Needed'} primaryText='Follow Up Needed' />
+                <MenuItem value={'Link Approved'} primaryText='Link Approved' />
+                <MenuItem value={'Link Denied'} primaryText='Link Denied' />
+                <MenuItem value={'Link Recieved'} primaryText='Link Recieved' />
+                <MenuItem value={'Guest Post Approved'} primaryText='Guest Post Approved' />
+                <MenuItem value={'Guest Post Denied'} primaryText='Guest Post Denied' />
+                </Field>
+              <Field 
+                name='notes'
+                label='Notes'
+                component={renderTextField}
+                multiLine={true}
+                rowsMax={4}
+                className='add-contact-text-field'
+              />
+            </form>
           </Dialog>
         </div>
       </div>
@@ -118,4 +170,13 @@ class ContactsForm extends Component {
   }
 }
 
-export default ContactsForm;
+const mapStateToProps = state => ({
+  initialValues: state.entries.entry
+})
+
+const entryForm = reduxForm({
+  form: 'ContactsForm'
+}, null, { deleteEntries, loadEntry, reset })(ContactsForm)
+
+
+export default connect(mapStateToProps)(entryForm);
