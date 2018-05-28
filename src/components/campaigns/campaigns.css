@@ -1,0 +1,38 @@
+.campaign-list-area {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.campaign-h2 {
+  margin: 20px 40px;
+  font-weight: 300;
+  font-size: 28px;
+}
+
+.campaign-list-group {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin: 0 20px;
+}
+
+.campaign-card{
+  margin: 40px 20px;
+  padding: 40px;
+  cursor: pointer;
+  width: 300px;
+}
+
+.campaign-boxes-list{
+  display: flex;
+}
+
+.campaign-editing-area {
+  margin: 20px 40px;
+}
+
+.contacts-editing-area {
+  margin: 20px 40px;
+}

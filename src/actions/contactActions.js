@@ -12,6 +12,20 @@ export function fetchEntries(campaignId) {
   }
 }
 
+// export const fetchEntries = (campaign) => dispatch => {
+//   fetch('http://localhost:5000/api/campaigns')
+//     .then(res => {
+//       if(!res.ok) {
+//         return Promise.reject(res.statusText);
+//       }
+//       return res.json();
+//     })
+//   .then(campaigns => dispatch({
+//     type: FETCH_CAMPAIGNS,
+//     payload: campaigns
+//   }))
+// };
+
 export const newEntry = entry => ({
   type: NEW_ENTRY,
   entry

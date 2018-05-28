@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchEntries } from '../../actions/contactActions';
+import { setActiveCampaign } from '../../actions/campaignActions';
+
 import CampaignDetails from './CampaignDetails';
 import Contacts from './Contacts';
-import { connect } from 'react-redux';
-import { fetchEntries } from '../actions/contactActions';
-import { setActiveCampaign } from '../actions/campaignActions';
 
 class CampaignContacts extends Component {
-  
   componentDidMount() {
-    let campaignId = this.props.match.params._id;
-      console.log(campaignId)
+    let campaignId = this.props.match.params.id;
     let campaign = this.props.campaigns.find((campaign) => {
-      return campaign._id === +campaignId
+      return campaign._id === campaignId
     });
-      console.log(campaign)
     this.props.setActiveCampaign(campaign)
     this.props.fetchEntries(campaign._id)
   }
-  
+
   render() {
     // const contactCampaign = this.props.entries.map(entry => {
     //   return entry.campaign
@@ -43,6 +41,6 @@ const mapStateToProps = state => ({
   entries: state.entries.entries,
   campaigns: state.campaigns.campaigns,
   campaign: state.campaigns.campaign
-})
+});
 
 export default connect(mapStateToProps, { fetchEntries, setActiveCampaign })(CampaignContacts);

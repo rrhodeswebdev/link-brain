@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { newEntry, editEntry } from '../../actions/contactActions';
+
+import ContactsForm from './ContactForm';
 import ContactTable from './ContactTable';
-import ContactsForm from './ContactsForm';
-import { newEntry, editEntry } from '../actions/contactActions';
 
 class Contacts extends Component {
   constructor(props){
@@ -16,7 +17,7 @@ class Contacts extends Component {
   }
 
   handleOpen = (edit) => {
-    this.setState({open: true, edit: edit, title: edit ? 'Edit Contact': 'Add New Contact'})
+    this.setState({open: true, edit: edit, title: edit ? 'Edit Contact': 'New Contact'})
   };
 
   handleClose = () => {
@@ -24,6 +25,9 @@ class Contacts extends Component {
   };
 
   createNewEntry(entry) {
+    const campaignIdEntry = this.props.campaign._id;
+    entry.campaignId = campaignIdEntry;
+
     if(this.state.edit) {
       this.props.editEntry(entry)
     } else {
@@ -35,13 +39,13 @@ class Contacts extends Component {
     return(
       <div>
         <ContactsForm 
-          onSubmit = {values => this.createNewEntry(values)} 
-          open={this.state.open} 
-          handleOpen={() => this.handleOpen(false)} 
+          onSubmit={values => this.createNewEntry(values)}
+          open={this.state.open}
+          handleOpen={() => this.handleOpen(false)}
           handleClose={() => this.handleClose()}
-          title = {this.state.title}
+          title={this.state.title}
         />
-        <ContactTable 
+        <ContactTable
           handleOpen={() => this.handleOpen(true)}
         />
       </div>
@@ -49,9 +53,9 @@ class Contacts extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  entries: state.entries.entries
-})
-
-export default connect(mapStateToProps, { newEntry, editEntry })(Contacts);
-
+  const mapStateToProps = state => ({
+    entries: state.entries.entries,
+    campaign: state.campaigns.campaign
+  })
+  
+  export default connect(mapStateToProps, { newEntry, editEntry })(Contacts);

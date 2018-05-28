@@ -2,8 +2,7 @@ import React from 'react';
 
 function Reporting() {
   return(
-    <div>
-    </div>
+    <h1>Reporting</h1>
   )
 }
 

@@ -1,0 +1,15 @@
+.side-menu {
+  display: block;
+  float: left;
+  height: 100vh;
+}
+
+.side-menu-links {
+  text-decoration: none;
+  padding: 0 10px;
+}
+
+.logout-btn {
+  text-decoration: none;
+  color: white;
+}
