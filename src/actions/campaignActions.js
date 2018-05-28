@@ -1,4 +1,4 @@
-import { FETCH_CAMPAIGNS, NEW_CAMPAIGN, EDIT_CAMPAIGN, ACTIVE_CAMPAIGN, LOAD_CAMPAIGN } from './types';
+import { FETCH_CAMPAIGNS, NEW_CAMPAIGN, EDIT_CAMPAIGN, ACTIVE_CAMPAIGN, LOAD_CAMPAIGN, ARCHIVED_CAMPAIGN } from './types';
 
 const token = window.localStorage.getItem('token');
 
@@ -66,6 +66,11 @@ export const editCampaign = (campaign) => dispatch => {
 
 export const setActiveCampaign = campaign => ({
   type: ACTIVE_CAMPAIGN,
+  campaign
+})
+
+export const archivedCampaign = campaign => ({
+  type: ARCHIVED_CAMPAIGN,
   campaign
 })
 

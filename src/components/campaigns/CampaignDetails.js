@@ -9,7 +9,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 
-import { editCampaign } from '../../actions/campaignActions';
+import { editCampaign, archivedCampaign } from '../../actions/campaignActions';
 import CampaignForm from './CampaignForm';
 
 class CampaignDetails extends Component {
@@ -30,8 +30,12 @@ class CampaignDetails extends Component {
   };
 
   editCampaign = (values) => {
-    console.log(values);
     this.props.editCampaign(values)
+  };
+
+  archivedCampaign = () => {
+    const campaign = this.props.campaign;
+    this.props.archivedCampaign(campaign)
   };
 
   render() {
@@ -78,7 +82,7 @@ class CampaignDetails extends Component {
               button='Edit Campaign'
             />
             <div className='campaign-editing-area'>
-              <Button variant='outlined' color='secondary'>
+              <Button variant='outlined' color='secondary' onClick={this.archivedCampaign}>
                 <Icon style={{fontSize: '1.2em', marginRight: '1em'}} className='fas fa-archive' />
                 Archive Campaign
               </Button>
@@ -90,4 +94,4 @@ class CampaignDetails extends Component {
   }
 }
 
-export default connect(null, { editCampaign })(CampaignDetails);
+export default connect(null, { editCampaign, archivedCampaign })(CampaignDetails);
