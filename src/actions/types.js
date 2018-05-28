@@ -10,3 +10,6 @@ export const NEW_CAMPAIGN = 'NEW_CAMPAIGN';
 export const EDIT_CAMPAIGN = 'EDIT_CAMPAIGN';
 export const ACTIVE_CAMPAIGN = 'ACTIVE_CAMPAIGN';
 export const LOAD_CAMPAIGN = 'LOAD_CAMPAIGN';
+
+export const SIGN_IN_USER = 'SIGN_IN_USER';
+export const SIGN_UP_USER = 'SIGN_UP_USER';
