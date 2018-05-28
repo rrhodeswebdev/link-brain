@@ -10,7 +10,7 @@ const initialState = {
       campaign: 'Campaign 1',
       status: 'New Contact',
       notes: 'This is a simple note that has been added',
-      date: '04/28/2018',
+      date: Date.now(),
       id: 1
     },
     {
@@ -21,7 +21,7 @@ const initialState = {
       campaign: 'Campaign 6',
       status: 'Waiting on Response',
       notes: 'This is a simple note that has been added',
-      date: '05/01/2018',
+      date: Date.now(),
       id: 2
     },
     {
@@ -32,7 +32,7 @@ const initialState = {
       campaign: 'Campaign 4',
       status: 'Awaiting Response',
       notes: '',
-      date: '04/17/2018',
+      date: Date.now(),
       id: 3
     }
   ],
