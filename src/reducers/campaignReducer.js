@@ -32,7 +32,7 @@ export default function(state = initialState, action) {
     case ARCHIVED_CAMPAIGN:
       return {
         ...state,
-        archived: action.campaign
+        archived: [...state.archived, action.campaign]
       }
     case LOAD_CAMPAIGN:
       return {
