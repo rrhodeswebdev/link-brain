@@ -91,7 +91,7 @@ class ContactTable extends Component {
   });
 
     return(
-      <Paper>
+      <Paper style={{ display: 'flex'}}>
         <Table>
           <TableHead>
             <TableRow>

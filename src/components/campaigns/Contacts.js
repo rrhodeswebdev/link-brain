@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { newEntry, editEntry } from '../../actions/contactActions';
 
-import ContactsForm from './ContactForm';
+import ContactForm from './ContactForm';
 import ContactTable from './ContactTable';
 
 class Contacts extends Component {
@@ -38,7 +38,7 @@ class Contacts extends Component {
   render() {
     return(
       <div>
-        <ContactsForm 
+        <ContactForm 
           onSubmit={values => this.createNewEntry(values)}
           open={this.state.open}
           handleOpen={() => this.handleOpen(false)}

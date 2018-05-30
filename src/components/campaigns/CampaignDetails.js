@@ -43,52 +43,56 @@ class CampaignDetails extends Component {
 
   render() {
     return(
-       <div>
-        <ExpansionPanel>
+       <div className='campaign-details-panel'>
+        <ExpansionPanel style={{ width: '100%'}}>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Typography variant='headline'>
               {this.props.campaign.name}
             </Typography>
           </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Typography variant='body2' style={{ paddingRight: '20px'}}>
-              URL:
-              <Typography>
-                {this.props.campaign.url} 
+          <ExpansionPanelDetails style={{ display: 'flex', justifyContent: 'space-between'}}>
+            <div>
+              <Typography variant='body2' style={{ paddingBottom: '20px'}}>
+                URL:
+                <Typography>
+                  {this.props.campaign.url} 
+                </Typography>
               </Typography>
-            </Typography>
-            <Typography variant='body2' style={{ paddingRight: '20px'}}>
-              Created: 
-              <Typography>
-              <Moment format='MMM DD, YYYY'>
-                {this.props.campaign.created}
-              </Moment>
+              <Typography variant='body2' style={{ paddingBottom: '20px'}}>
+                Created: 
+                <Typography>
+                <Moment format='MMM DD, YYYY'>
+                  {this.props.campaign.created}
+                </Moment>
+                </Typography>
               </Typography>
-            </Typography>
-            <Typography variant='body2' style={{ paddingRight: '20px'}}>
-              Successful Links:
-              <Typography>
-                5
+              <Typography variant='body2' style={{ paddingBottom: '20px'}}>
+                Successful Links:
+                <Typography>
+                  5
+                </Typography>
               </Typography>
-            </Typography>
-            <Typography variant='body2' style={{ paddingRight: '20px'}}>
-              Number of Contacts:
-              <Typography>
-                45 
+              <Typography variant='body2' style={{ paddingBottom: '20px'}}>
+                Number of Contacts:
+                <Typography>
+                  45 
+                </Typography>
               </Typography>
-            </Typography>
-            <CampaignForm 
-              onSubmit={values => this.editCampaign(values)}
-              className='fas fa-plus'
-              style={{fontSize: '1.2em', marginRight: '1em'}} 
-              title='Edit Campaign'
-              button='Edit Campaign'
-            />
-            <div className='campaign-editing-area'>
-              <Button variant='outlined' color='secondary' onClick={this.archivedCampaign}>
-                <Icon style={{fontSize: '1.2em', marginRight: '1em'}} className='fas fa-archive' />
-                Archive Campaign
-              </Button>
+            </div>
+              <div>
+              <CampaignForm 
+                onSubmit={values => this.editCampaign(values)}
+                className='fas fa-plus'
+                style={{fontSize: '1.2em', marginRight: '1em'}} 
+                title='Edit Campaign'
+                button='Edit Campaign'
+              />
+              <div className='campaign-editing-area'>
+                <Button variant='outlined' color='secondary' onClick={this.archivedCampaign}>
+                  <Icon style={{fontSize: '1.2em', marginRight: '1em'}} className='fas fa-archive' />
+                  Archive Campaign
+                </Button>
+              </div>
             </div>
           </ExpansionPanelDetails>
         </ExpansionPanel>

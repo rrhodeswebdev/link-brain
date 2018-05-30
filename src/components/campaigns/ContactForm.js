@@ -71,13 +71,13 @@ class ContactsForm extends Component {
   render() {
     const submit = this.props.handleSubmit(this.props.onSubmit);
     return(
-      <div>
+      <div className='contacts-area'>
         <div className='contacts-editing-area'>
-          <Button variant='outlined' onClick={this.props.handleOpen} color='primary'>
+          <Button variant='outlined' onClick={this.props.handleOpen} color='primary' style={{ margin: '0px 20px 10px 0px'}}>
             <Icon style={{fontSize: '1.2em', marginRight: '1em'}} className='fas fa-plus' />
             Add New Contact
           </Button>
-          <Button variant='outlined' onClick={() => this.handleDelete()} color='secondary'>
+          <Button variant='outlined' onClick={() => this.handleDelete()} color='secondary' style={{ margin: '0px 20px 10px 0px'}}>
             <Icon style={{fontSize: '1.2em', marginRight: '1em'}} className='far fa-trash-alt' />
             Delete Contacts
           </Button>

@@ -34,5 +34,17 @@
 }
 
 .contacts-editing-area {
-  margin: 20px 40px;
+  margin: 10px;
+}
+
+.contacts-area {
+  display: flex;
+  justify-content: flex-start;
+  padding: 20px 40px;
+}
+
+.campaign-details-panel {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
 }
