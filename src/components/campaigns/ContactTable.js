@@ -45,20 +45,21 @@ class ContactTable extends Component {
   };
 
   handleClick = (event, id) => {
-    const { selected } = this.props.selectedRows;
-    const selectedIndex = selected.indexOf(id);
+    console.log(id)
+    const { selectedRows } = this.props;
+    const selectedIndex = selectedRows.indexOf(id);
     let newSelected = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id);
+      newSelected = newSelected.concat(selectedRows, id);
     } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
+      newSelected = newSelected.concat(selectedRows.slice(1));
+    } else if (selectedIndex === selectedRows.length - 1) {
+      newSelected = newSelected.concat(selectedRows.slice(0, -1));
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
+        selectedRows.slice(0, selectedIndex),
+        selectedRows.slice(selectedIndex + 1),
       );
     }
     this.handleRowSelection(newSelected);
@@ -67,7 +68,7 @@ class ContactTable extends Component {
   render() {
     const { onSelectAllClick, order, orderBy, numSelected, rowCount } = this.props;
     const tableEntries = this.props.entries.map(entry => {
-      const isSelected = this.props.selectedRows;
+      const isSelected = this.props.selectedRows.includes(entry.id);
       return (
       <TableRow
         hover
@@ -132,6 +133,7 @@ class ContactTable extends Component {
 
 const mapStateToProps = state => ({
   entries: state.entries.entries,
+  selectedRows: state.entries.selectedRows
 })
 
 export default connect(mapStateToProps, { selectRows, loadEntry })(ContactTable);

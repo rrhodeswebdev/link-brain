@@ -36,7 +36,8 @@ class CampaignDetails extends Component {
   archivedCampaign = () => {
     const campaign = this.props.campaign;
     const archived = !campaign.archived;
-    console.log(archived);
+
+    campaign.archived = archived;
 
     this.props.archivedCampaign(campaign)
   };

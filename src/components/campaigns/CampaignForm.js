@@ -31,7 +31,7 @@ const renderTextField = ({
   />
 );
 
-class CampaignForm extends Component { 6
+class CampaignForm extends Component { 
   constructor(props) {
     super(props)
 

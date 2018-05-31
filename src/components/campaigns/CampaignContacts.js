@@ -12,8 +12,17 @@ class CampaignContacts extends Component {
     let campaign = this.props.campaigns.find((campaign) => {
       return campaign._id === campaignId
     });
+    let archived = this.props.archived.find((archived) => {
+      return archived._id === campaignId
+    });
+
+    if(campaign) {
+      this.props.fetchEntries(campaign)
+    } else if(archived) {
+      this.props.fetchEntries(archived)
+    }
+
     this.props.setActiveCampaign(campaign)
-    this.props.fetchEntries(campaign._id)
   }
 
   render() {
@@ -40,7 +49,8 @@ class CampaignContacts extends Component {
 const mapStateToProps = state => ({
   entries: state.entries.entries,
   campaigns: state.campaigns.campaigns,
-  campaign: state.campaigns.campaign
+  campaign: state.campaigns.campaign,
+  archived: state.campaigns.archived
 });
 
 export default connect(mapStateToProps, { fetchEntries, setActiveCampaign })(CampaignContacts);

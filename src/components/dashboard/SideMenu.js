@@ -31,14 +31,6 @@ function SideMenu() {
             <ListItemText primary='Campaigns' />
           </Link>
         </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <TrendingUpIcon />
-          </ListItemIcon>
-          <Link to='/dashboard/reporting' className='side-menu-links'>
-            <ListItemText primary='Reports' />
-          </Link>
-        </ListItem>
       </List>
     </Paper>
   )

@@ -16,10 +16,21 @@ export const fetchCampaigns = () => dispatch => {
         }
         return res.json();
       })
-    .then(campaigns => dispatch({
-      type: FETCH_CAMPAIGNS,
-      payload: campaigns
-    }))
+    .then(campaigns =>{
+      const archived = [];
+      const active = [];
+      campaigns.forEach(campaign => {
+        if(campaign.archived) {
+          archived.push(campaign)
+        } else {
+          active.push(campaign)
+        }
+      })
+      dispatch ({
+        type: FETCH_CAMPAIGNS,
+        archived, active
+    })
+  })
   };
 
 export const newCampaign = (campaign) => dispatch => {
@@ -69,10 +80,26 @@ export const setActiveCampaign = campaign => ({
   campaign
 })
 
-export const archivedCampaign = campaign => ({
-  type: ARCHIVED_CAMPAIGN,
-  campaign
-})
+export const archivedCampaign = campaign => dispatch => {
+  fetch(`http://localhost:5000/api/campaign/${campaign._id}`, {
+    method: 'PUT',
+    body: JSON.stringify(campaign),
+    headers: new Headers ({
+      'content-type': 'application/json',
+      'authorization': 'Bearer ' + token
+    })
+  })
+  .then(res => {
+    if(!res.ok) {
+      return Promise.reject(res.statusText);
+    }
+    return res.json();
+  })
+  .then(campaign => dispatch({
+    type: ARCHIVED_CAMPAIGN,
+    campaign
+  }))
+}
 
 export const loadCampaign = data => ({
   type: LOAD_CAMPAIGN,

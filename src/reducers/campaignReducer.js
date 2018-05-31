@@ -12,7 +12,8 @@ export default function(state = initialState, action) {
     case FETCH_CAMPAIGNS:
       return {
         ...state,
-        campaigns: action.payload
+        campaigns: action.active,
+        archived: action.archived
       };
     case NEW_CAMPAIGN:
       return {
@@ -30,9 +31,15 @@ export default function(state = initialState, action) {
         campaign: action.campaign
       }
     case ARCHIVED_CAMPAIGN:
+      const campaigns = [...state.campaigns]
+      const index = campaigns.findIndex(campaign => {
+        return campaign._id === action.campaign._id;
+      })
+      campaigns.splice(index, 1)
       return {
         ...state,
-        archived: [...state.archived, action.campaign]
+        archived: [...state.archived, action.campaign],
+        campaigns: campaigns
       }
     case LOAD_CAMPAIGN:
       return {
