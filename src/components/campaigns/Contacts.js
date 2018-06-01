@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { newEntry, editEntry } from '../../actions/contactActions';
 
 import ContactForm from './ContactForm';
-import ContactTable from './ContactTable';
+// import ContactTable from './ContactTable';
 import EnhancedTable from './ContactTable2';
 
 class Contacts extends Component {
