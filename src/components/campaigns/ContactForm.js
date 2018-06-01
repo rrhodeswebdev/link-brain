@@ -13,6 +13,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
+import Input from '@material-ui/core/Input';
 
 import { deleteEntries, loadEntry } from '../../actions/contactActions';
 
@@ -39,15 +40,15 @@ const renderSelectField = ({
   children,
   ...custom
 }) => (
-  <FormControl>
-    <InputLabel>Status</InputLabel>
-    <Select
-      autoWidth={true}
-      {...input}
-      onChange={(event, index, value) => input.onChange(value)}
-      children={children}
-      {...custom}
-    />
+  <FormControl style={{ minWidth: '199px' }}>
+    <InputLabel htmlFor='status'>Status</InputLabel>
+      <Select
+        input={<Input id='status' />}
+        onChange={(event, index, value) => input.onChange(value)}
+        children={children}
+        {...input}
+        {...custom}
+      />
   </FormControl>
 )
 
@@ -88,50 +89,52 @@ class ContactsForm extends Component {
               {this.props.title}
             </DialogTitle>
             <DialogContent>
-              <DialogContentText style={{marginBottom: '5px'}}>
-                Add contact details below
-              </DialogContentText>
-              <Field 
-                name='name'
-                label='Name'
+              <form>
+                <DialogContentText style={{marginBottom: '5px'}}>
+                  Add contact details below
+                </DialogContentText>
+                <Field 
+                  name='name'
+                  label='Name'
+                  component={renderTextField}
+                />
+                <Field 
+                name='email'
+                label='Email'
                 component={renderTextField}
-              />
-              <Field 
-              name='email'
-              label='Email'
-              component={renderTextField}
-              />
-              <Field 
-              name='website'
-              label='Website'
-              component={renderTextField}
-              />
-              <Field 
-              name='linkurl'
-              label='Linking URL'
-              component={renderTextField}
-              />
-              <Field 
-              name='notes'
-              label='Notes'
-              component={renderTextField}
-              />
-              <Field
-                name="status"
-                component={renderSelectField}
-                label="Status"
-              >
-                <MenuItem value={'New Contact'}>New Contact</MenuItem>
-                <MenuItem value={'Needs More Research'}>Needs More Research</MenuItem>
-                <MenuItem value={'Awaiting Response'}>Awaiting Response</MenuItem>
-                <MenuItem value={'Response Recieved'}>Response Recieved</MenuItem>
-                <MenuItem value={'Follow Up Needed'}>Follow Up Needed</MenuItem>
-                <MenuItem value={'Link Approved'}>Link Approved</MenuItem>
-                <MenuItem value={'Link Denied'}>Link Denied</MenuItem>
-                <MenuItem value={'Link Recieved'}>Link Recieved</MenuItem>
-                <MenuItem value={'Guest Post Approved'}>Guest Post Approved</MenuItem>
-                <MenuItem value={'Guest Post Denied'}>Guest Post Denied</MenuItem>
-              </Field>
+                />
+                <Field 
+                name='website'
+                label='Website'
+                component={renderTextField}
+                />
+                <Field 
+                name='linkurl'
+                label='Linking URL'
+                component={renderTextField}
+                />
+                <Field 
+                name='notes'
+                label='Notes'
+                component={renderTextField}
+                />
+                <Field
+                  name="status"
+                  component={renderSelectField}
+                  label="Status"
+                >
+                  <MenuItem value={'New Contact'}>New Contact</MenuItem>
+                  <MenuItem value={'Needs More Research'}>Needs More Research</MenuItem>
+                  <MenuItem value={'Awaiting Response'}>Awaiting Response</MenuItem>
+                  <MenuItem value={'Response Recieved'}>Response Recieved</MenuItem>
+                  <MenuItem value={'Follow Up Needed'}>Follow Up Needed</MenuItem>
+                  <MenuItem value={'Link Approved'}>Link Approved</MenuItem>
+                  <MenuItem value={'Link Denied'}>Link Denied</MenuItem>
+                  <MenuItem value={'Link Recieved'}>Link Recieved</MenuItem>
+                  <MenuItem value={'Guest Post Approved'}>Guest Post Approved</MenuItem>
+                  <MenuItem value={'Guest Post Denied'}>Guest Post Denied</MenuItem>
+                </Field>
+              </form>
             </DialogContent>
           <DialogActions>
             <Button onClick={() => {this.props.reset(); this.props.handleClose();}} color='secondary'>
@@ -149,7 +152,8 @@ class ContactsForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  initialValues: state.entries.entry
+  initialValues: state.entries.entry,
+  enableReinitialize: true
 });
 
 const entryForm = reduxForm({

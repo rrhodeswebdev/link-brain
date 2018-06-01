@@ -4,6 +4,7 @@ import { newEntry, editEntry } from '../../actions/contactActions';
 
 import ContactForm from './ContactForm';
 import ContactTable from './ContactTable';
+import EnhancedTable from './ContactTable2';
 
 class Contacts extends Component {
   constructor(props){
@@ -45,9 +46,10 @@ class Contacts extends Component {
           handleClose={() => this.handleClose()}
           title={this.state.title}
         />
-        <ContactTable
+        {/* <ContactTable
           handleOpen={() => this.handleOpen(true)}
-        />
+        /> */}
+        <EnhancedTable />
       </div>
     )
   }
