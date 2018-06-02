@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { newEntry, editEntry } from '../../actions/contactActions';
+import { newEntry, editEntry, deleteEntries } from '../../actions/contactActions';
 
 import ContactForm from './ContactForm';
 // import ContactTable from './ContactTable';
-import EnhancedTable from './ContactTable2';
+import EnhancedTable from './EnhancedTable';
 
 class Contacts extends Component {
   constructor(props){
@@ -36,6 +36,11 @@ class Contacts extends Component {
     }
   };
 
+  handleDelete(selected) {
+    console.log(selected)
+    this.props.deleteEntries(selected)
+  }
+
   render() {
     return(
       <div>
@@ -49,7 +54,7 @@ class Contacts extends Component {
         {/* <ContactTable
           handleOpen={() => this.handleOpen(true)}
         /> */}
-        <EnhancedTable />
+        <EnhancedTable contacts={this.props.entries} handleDelete={(selected) => {this.handleDelete(selected)}}/>
       </div>
     )
   }
@@ -60,4 +65,4 @@ class Contacts extends Component {
     campaign: state.campaigns.campaign
   })
   
-  export default connect(mapStateToProps, { newEntry, editEntry })(Contacts);
+  export default connect(mapStateToProps, { newEntry, editEntry, deleteEntries })(Contacts);

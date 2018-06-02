@@ -43,6 +43,15 @@ class CampaignDetails extends Component {
   };
 
   render() {
+    const successfulLinks = [];
+
+    this.props.contacts.map((contact) => {
+      if(contact.status === 'Link Approved') {
+        successfulLinks.push(contact)
+      }
+      return successfulLinks;
+    });
+
     return(
        <div className='campaign-details-panel'>
         <ExpansionPanel style={{ width: '100%'}}>
@@ -70,13 +79,13 @@ class CampaignDetails extends Component {
               <Typography variant='body2' style={{ paddingBottom: '20px'}}>
                 Successful Links:
                 <Typography>
-                  5
+                  {successfulLinks.length}
                 </Typography>
               </Typography>
               <Typography variant='body2' style={{ paddingBottom: '20px'}}>
                 Number of Contacts:
                 <Typography>
-                  45 
+                  {this.props.contacts.length}
                 </Typography>
               </Typography>
             </div>

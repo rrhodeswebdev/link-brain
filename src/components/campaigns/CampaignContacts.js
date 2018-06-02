@@ -18,11 +18,11 @@ class CampaignContacts extends Component {
 
     if(campaign) {
       this.props.fetchEntries(campaign)
+      this.props.setActiveCampaign(campaign)
     } else if(archived) {
       this.props.fetchEntries(archived)
+      this.props.setActiveCampaign(archived)
     }
-
-    this.props.setActiveCampaign(campaign)
   }
 
   render() {
@@ -39,7 +39,7 @@ class CampaignContacts extends Component {
 
     return(
       <div>
-        <CampaignDetails campaign={this.props.campaign} />
+        <CampaignDetails campaign={this.props.campaign} contacts={this.props.entries} />
         <Contacts />
       </div>
     )

@@ -10,13 +10,14 @@ class DashboardData extends Component {
   }
   
   render() {
-    const liveCampaignCard = <DataCard liveCampaigns={this.props.campaigns} />;
-    const archivedCampaignCard = <DataCard archivedCampaigns={this.props.archived} />;
+    const liveCampaignCard = <DataCard count={this.props.campaigns.length} title='Live Campaigns' />;
+    const archivedCampaignCard = <DataCard count={this.props.archived.length} title='Archived Campaigns' />;
 
     return(
       <div>
         <div className='data-card-area'>
           {liveCampaignCard}
+          {archivedCampaignCard}
         </div>
         <div className='data-graph-area'>
         </div>

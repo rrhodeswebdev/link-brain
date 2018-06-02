@@ -13,7 +13,7 @@ function Dashboard({match}) {
       <div>
         <NavBar />
         <SideMenu />
-        <DashboardData />
+        <Route exact path={`${match.url}/`} component={DashboardData} />
       </div>
       <div>
         <Route exact path={`${match.url}/campaigns`} component={Campaigns} />

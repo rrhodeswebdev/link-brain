@@ -15,13 +15,15 @@ import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
 import Tooltip from '@material-ui/core/Tooltip';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 import Moment from 'react-moment';
 
-let counter = 0;
-function createData(name, email, website, linkurl, status, notes, lastupdate) {
-  counter += 1;
-  return { id: counter, name, email, website, linkurl, status, notes, lastupdate };
-}
+// let counter = 0;
+// function createData(name, email, website, linkurl, status, notes, lastupdate) {
+//   counter += 1;
+//   return { id: counter, name, email, website, linkurl, status, notes, lastupdate };
+// }
 
 const columnData = [
   { id: 'name', disablePadding: true, label: 'Name' },
@@ -135,6 +137,16 @@ let EnhancedTableToolbar = props => {
           </Typography>
         )}
       </div>
+      <div className={classes.spacer} />
+      <div className={classes.actions}>
+        {numSelected > 0 && (
+          <Tooltip title="Delete">
+            <IconButton aria-label="Delete">
+              <DeleteIcon onClick={() => {props.handleDelete()}}/>
+            </IconButton>
+          </Tooltip>
+        )}
+      </div>
     </Toolbar>
   );
 };
@@ -167,14 +179,16 @@ class EnhancedTable extends React.Component {
       order: 'asc',
       orderBy: 'name',
       selected: [],
-      data: [
-        createData('Ryan Rhodes', 'ryanrhodes@gmail.com', 'Ryan Rhodes Dev', 'rrhodes.com/blog/funny', 'New Contact', 'This is a simple note that has been added', Date.now()),
-        createData('Tyler Doodle', 'tdoodle@gmail.com', 'Tyler Doodles', 'tylerlovesdoodle.com/blog/art', 'New Contact', 'This is a simple note that has been added', Date.now()),
-        createData('Bob Whitehead', 'bwhitehead@hotmail.com', 'Hot Rob Bob', 'hotrodbob.com/blog/link', 'Follow Up', 'This is a simple note that has been added', Date.now()),
-      ].sort((a, b) => (a.name < b.name ? -1 : 1)),
+      data: props.contacts.sort((a, b) => (a.name < b.name ? -1 : 1)),
       page: 0,
-      rowsPerPage: 5,
+      rowsPerPage: 10,
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      data: nextProps.contacts.sort((a, b) => (a.name < b.name ? -1 : 1))
+    })
   }
 
   handleRequestSort = (event, property) => {
@@ -195,7 +209,7 @@ class EnhancedTable extends React.Component {
 
   handleSelectAllClick = (event, checked) => {
     if (checked) {
-      this.setState({ selected: this.state.data.map(n => n.id) });
+      this.setState({ selected: this.state.data.map(n => n._id) });
       return;
     }
     this.setState({ selected: [] });
@@ -239,7 +253,7 @@ class EnhancedTable extends React.Component {
 
     return (
       <Paper className={classes.root}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar numSelected={selected.length} handleDelete={() => {this.props.handleDelete(this.state.selected)}}/>
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
             <EnhancedTableHead
@@ -252,15 +266,15 @@ class EnhancedTable extends React.Component {
             />
             <TableBody>
               {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(n => {
-                const isSelected = this.isSelected(n.id);
+                const isSelected = this.isSelected(n._id);
                 return (
                   <TableRow
                     hover
-                    onClick={event => this.handleClick(event, n.id)}
+                    onClick={event => this.handleClick(event, n._id)}
                     role="checkbox"
                     aria-checked={isSelected}
                     tabIndex={-1}
-                    key={n.id}
+                    key={n._id}
                     selected={isSelected}
                   >
                     <TableCell padding="checkbox">

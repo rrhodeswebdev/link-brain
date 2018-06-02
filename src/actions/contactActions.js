@@ -1,44 +1,72 @@
 import { FETCH_ENTRIES, NEW_ENTRY, DELETE_ENTRY, ROW_SELECTED, EDIT_ENTRY, LOAD_ENTRY } from './types';
 
-export function fetchEntries(campaignId) {
-  return function(dispatch) {
-    //Make call to API once built
-    //fetch('url')
-    //.then(res => res.json())
-    //.then(entries => dispatch({
-    //type: FETCH_ENTRIES,
-    //payload: entries
-    //}));
-  }
-}
+const token = window.localStorage.getItem('token');
 
-// export const fetchEntries = (campaign) => dispatch => {
-//   fetch('http://localhost:5000/api/campaigns')
-//     .then(res => {
-//       if(!res.ok) {
-//         return Promise.reject(res.statusText);
-//       }
-//       return res.json();
-//     })
-//   .then(campaigns => dispatch({
-//     type: FETCH_CAMPAIGNS,
-//     payload: campaigns
-//   }))
-// };
+export const fetchEntries = (campaign) => dispatch => (
+  fetch('http://localhost:5000/api/contacts', {
+    method: 'GET', 
+    headers: new Headers ({
+      'content-type': 'application/json',
+      'authorization': 'Bearer ' + token
+    })
+  })
+  .then(res => {
+    if(!res.ok) {
+      return Promise.reject(res.statusText);
+    }
+    return res.json();
+  })
+  .then(contacts => dispatch({
+    type: FETCH_ENTRIES,
+    contacts
+  }))
+);
 
-export const newEntry = entry => ({
-  type: NEW_ENTRY,
-  entry
-});
+export const newEntry = (entry) => dispatch => (
+  fetch('http://localhost:5000/api/contacts', {
+    method: 'POST',
+    body: JSON.stringify(entry),
+    headers: new Headers ({
+      'content-type': 'application/json',
+      'authorization': 'Bearer ' + token
+    })
+  })
+  .then(res => {
+    if(!res.ok) {
+      return Promise.reject(res.statusText);
+    }
+    return res.json();
+  })
+  .then(entry => dispatch({
+    type: NEW_ENTRY,
+    entry
+  }))
+);
 
 export const selectRows = selectedRows => ({
   type: ROW_SELECTED,
   selectedRows
 });
 
-export const deleteEntries = () => ({
-  type: DELETE_ENTRY
-})
+export const deleteEntries = (selected) => dispatch => (
+  fetch(`http://localhost:5000/api/contact/${selected}`, {
+    method: 'DELETE',
+    headers: new Headers ({
+      'content-type': 'application/json',
+      'authorization': 'Bearer ' + token
+    })
+  })
+  .then(res => {
+    if(!res.ok) {
+      return Promise.reject(res.statusText);
+    }
+    return res.json();
+  })
+  .then(selected => dispatch({
+    type: DELETE_ENTRY,
+    selected
+  }))
+);
 
 export const editEntry = (entry) => ({
   type: EDIT_ENTRY,

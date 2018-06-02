@@ -1,41 +1,7 @@
 import { FETCH_ENTRIES, NEW_ENTRY, DELETE_ENTRY, ROW_SELECTED, EDIT_ENTRY, LOAD_ENTRY } from '../actions/types';
 
 const initialState = {
-  entries: [
-    {
-      name: 'Ryan Rhodes',
-      email: 'ryanrhodes@gmail.com',
-      website: 'rrhodesdev.com',
-      linkurl: 'rrhodes.com/blog/funny',
-      campaign: 'Campaign 1',
-      status: 'New Contact',
-      notes: 'This is a simple note that has been added',
-      date: Date.now(),
-      id: 1
-    },
-    {
-      name: 'Alaska John',
-      email: 'akjohn@gmail.com',
-      website: 'alaska.org',
-      linkurl: 'alaska.org/blog/cool-bear-stories',
-      campaign: 'Campaign 6',
-      status: 'Waiting on Response',
-      notes: 'This is a simple note that has been added',
-      date: Date.now(),
-      id: 2
-    },
-    {
-      name: 'Maria Gloss',
-      email: 'rmgloss@outlook.com',
-      website: 'mediaads.com',
-      linkurl: 'mediaads.com/tutorials/',
-      campaign: 'Campaign 4',
-      status: 'Awaiting Response',
-      notes: '',
-      date: Date.now(),
-      id: 3
-    }
-  ],
+  entries: [],
   entry: null,
   selectedRows: []
 }
@@ -45,7 +11,7 @@ export default function(state = initialState, action) {
     case FETCH_ENTRIES: 
       return {
         ...state, 
-        entries: action.payload
+        entries: action.contacts
       };
     case NEW_ENTRY:
       return {
@@ -54,11 +20,11 @@ export default function(state = initialState, action) {
       };
     case DELETE_ENTRY:
       let selectedItems = [...state.entries];
-      if(state.selectedRows === 'all') {
+      if(action.selected === 'all') {
         selectedItems = []
-      } else if(Array.isArray(state.selectedRows)) {
+      } else if(Array.isArray(action.selected)) {
         selectedItems = selectedItems.filter((item, index) => {
-          return !state.selectedRows.includes(index)
+          return !action.selected.includes(item.id)
         })
       }
       return {

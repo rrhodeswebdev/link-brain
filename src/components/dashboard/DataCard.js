@@ -8,10 +8,10 @@ function DataCard(props) {
     <Card>
       <CardContent>
         <Typography variant='headline'>
-          Live Campaigns
+          {props.title}
         </Typography>
         <Typography>
-          {props.liveCampaigns.length}
+          {props.count}
         </Typography>
       </CardContent>
     </Card>
