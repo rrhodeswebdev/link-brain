@@ -20,9 +20,7 @@ export default function(state = initialState, action) {
       };
     case DELETE_ENTRY:
       let selectedItems = [...state.entries];
-      if(action.selected === 'all') {
-        selectedItems = []
-      } else if(Array.isArray(action.selected)) {
+      if(Array.isArray(action.selected)) {
         selectedItems = selectedItems.filter((item, index) => {
           return !action.selected.includes(item.id)
         })

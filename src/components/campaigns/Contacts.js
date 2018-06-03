@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { newEntry, editEntry, deleteEntries } from '../../actions/contactActions';
 
 import ContactForm from './ContactForm';
-// import ContactTable from './ContactTable';
 import EnhancedTable from './EnhancedTable';
 
 class Contacts extends Component {
@@ -37,7 +36,6 @@ class Contacts extends Component {
   };
 
   handleDelete(selected) {
-    console.log(selected)
     this.props.deleteEntries(selected)
   }
 
@@ -51,10 +49,11 @@ class Contacts extends Component {
           handleClose={() => this.handleClose()}
           title={this.state.title}
         />
-        {/* <ContactTable
+        <EnhancedTable 
+          contacts={this.props.entries} 
+          handleDelete={(selected) => {this.handleDelete(selected)}} 
           handleOpen={() => this.handleOpen(true)}
-        /> */}
-        <EnhancedTable contacts={this.props.entries} handleDelete={(selected) => {this.handleDelete(selected)}}/>
+        />
       </div>
     )
   }
@@ -62,6 +61,7 @@ class Contacts extends Component {
 
   const mapStateToProps = state => ({
     entries: state.entries.entries,
+    entry: state.entries.entry,
     campaign: state.campaigns.campaign
   })
   

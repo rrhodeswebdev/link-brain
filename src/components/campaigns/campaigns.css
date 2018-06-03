@@ -40,7 +40,7 @@
 .contacts-area {
   display: flex;
   justify-content: flex-start;
-  padding: 10px 40px;
+  padding: 0 40px;
 }
 
 .campaign-details-panel {

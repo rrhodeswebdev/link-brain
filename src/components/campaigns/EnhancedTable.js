@@ -17,13 +17,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import CreateIcon from '@material-ui/icons/Create';
 import Moment from 'react-moment';
-
-// let counter = 0;
-// function createData(name, email, website, linkurl, status, notes, lastupdate) {
-//   counter += 1;
-//   return { id: counter, name, email, website, linkurl, status, notes, lastupdate };
-// }
 
 const columnData = [
   { id: 'name', disablePadding: true, label: 'Name' },
@@ -32,7 +27,8 @@ const columnData = [
   { id: 'linkurl', disablePadding: false, label: 'Linking URL' },
   { id: 'status', disablePadding: false, label: 'Status' },
   { id: 'notes', disablePadding: false, label: 'Notes' },
-  { id: 'lastupdate', disablePadding: false, label: 'Last Updated' }
+  { id: 'lastupdate', disablePadding: false, label: 'Last Updated' },
+  { id: 'editicon', disablePadding: false}
 ];
 
 class EnhancedTableHead extends React.Component {
@@ -51,6 +47,7 @@ class EnhancedTableHead extends React.Component {
               indeterminate={numSelected > 0 && numSelected < rowCount}
               checked={numSelected === rowCount}
               onChange={onSelectAllClick}
+              color='primary'
             />
           </TableCell>
           {columnData.map(column => {
@@ -236,6 +233,11 @@ class EnhancedTable extends React.Component {
     this.setState({ selected: newSelected });
   };
 
+  handleEditClick = (entry) => {
+    console.log(entry)
+    this.props.handleOpen(entry)
+  }
+
   handleChangePage = (event, page) => {
     this.setState({ page });
   };
@@ -278,7 +280,7 @@ class EnhancedTable extends React.Component {
                     selected={isSelected}
                   >
                     <TableCell padding="checkbox">
-                      <Checkbox checked={isSelected} />
+                      <Checkbox color='primary' checked={isSelected} />
                     </TableCell>
                     <TableCell component="th" scope="row" padding="none">
                       {n.name}
@@ -289,12 +291,19 @@ class EnhancedTable extends React.Component {
                     <TableCell>{n.status}</TableCell>
                     <TableCell>{n.notes}</TableCell>
                     <TableCell><Moment format='MMM DD, YYYY'>{n.lastupdate}</Moment></TableCell>
+                    <TableCell>
+                      <Tooltip title="Edit">
+                        <IconButton aria-label="Edit">
+                          <CreateIcon color='primary' onClick={() => this.handleEditClick(n)}/>
+                        </IconButton>
+                      </Tooltip>
+                    </TableCell>
                   </TableRow>
                 );
               })}
               {emptyRows > 0 && (
                 <TableRow style={{ height: 49 * emptyRows }}>
-                  <TableCell colSpan={6} />
+                  <TableCell colSpan={12} />
                 </TableRow>
               )}
             </TableBody>

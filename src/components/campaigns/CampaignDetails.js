@@ -46,7 +46,7 @@ class CampaignDetails extends Component {
     const successfulLinks = [];
 
     this.props.contacts.map((contact) => {
-      if(contact.status === 'Link Approved') {
+      if(contact.status === 'Link Recieved') {
         successfulLinks.push(contact)
       }
       return successfulLinks;
