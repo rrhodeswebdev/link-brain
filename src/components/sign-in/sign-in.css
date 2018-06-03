@@ -1,3 +1,6 @@
-.sign-in-btn {
-  margin-top: 40px;
+.sign-in-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px;
 }
