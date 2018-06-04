@@ -1,4 +1,4 @@
-import { FETCH_ENTRIES, NEW_ENTRY, DELETE_ENTRY, ROW_SELECTED, EDIT_ENTRY, LOAD_ENTRY } from './types';
+import { FETCH_ENTRIES, NEW_ENTRY, DELETE_ENTRY, ROW_SELECTED, EDIT_ENTRY, LOAD_ENTRY, FETCH_USER_CONTACTS } from './types';
 
 const token = window.localStorage.getItem('token');
 
@@ -18,6 +18,26 @@ export const fetchEntries = (campaign) => dispatch => (
   })
   .then(contacts => dispatch({
     type: FETCH_ENTRIES,
+    contacts
+  }))
+);
+
+export const fetchAllContacts = () => dispatch => (
+  fetch('http://localhost:5000/api/contacts', {
+    method: 'GET',
+    headers: new Headers ({
+      'content-type': 'application/json',
+      'authorization': 'Bearer ' + token
+    })
+  })
+  .then(res => {
+    if(!res.ok) {
+      return Promise.reject(res.statusText);
+    }
+    return res.json();
+  })
+  .then(contacts => dispatch({
+    type:FETCH_USER_CONTACTS,
     contacts
   }))
 );

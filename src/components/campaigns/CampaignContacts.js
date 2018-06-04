@@ -17,7 +17,6 @@ class CampaignContacts extends Component {
     });
 
     if(campaign) {
-      console.log(campaign)
       this.props.fetchEntries(campaign)
       this.props.setActiveCampaign(campaign)
     } else if(archived) {

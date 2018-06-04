@@ -1,7 +1,8 @@
-import { FETCH_ENTRIES, NEW_ENTRY, DELETE_ENTRY, ROW_SELECTED, EDIT_ENTRY, LOAD_ENTRY } from '../actions/types';
+import { FETCH_ENTRIES, NEW_ENTRY, DELETE_ENTRY, ROW_SELECTED, EDIT_ENTRY, LOAD_ENTRY, FETCH_USER_CONTACTS } from '../actions/types';
 
 const initialState = {
   entries: [],
+  usercontacts: [],
   entry: null,
   selectedRows: []
 }
@@ -13,6 +14,11 @@ export default function(state = initialState, action) {
         ...state, 
         entries: action.contacts
       };
+    case FETCH_USER_CONTACTS: 
+      return {
+        ...state,
+        usercontacts: action.contacts
+      }
     case NEW_ENTRY:
       return {
         ...state,

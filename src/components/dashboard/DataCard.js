@@ -5,12 +5,12 @@ import Typography from '@material-ui/core/Typography';
 
 function DataCard(props) {
   return(
-    <Card>
+    <Card style={{width: '300px', textAlign: 'center'}}>
       <CardContent>
         <Typography variant='headline'>
           {props.title}
         </Typography>
-        <Typography>
+        <Typography variant='display2' style={{textAlign: 'center'}}>
           {props.count}
         </Typography>
       </CardContent>
