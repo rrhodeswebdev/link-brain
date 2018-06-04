@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 
 function DataCard(props) {
   return(
-    <Card style={{width: '300px', textAlign: 'center'}}>
+    <Card style={{width: '300px', textAlign: 'center', margin: '0 20px'}}>
       <CardContent>
         <Typography variant='headline'>
           {props.title}

@@ -3,7 +3,7 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid } from 'recharts';
 
 function DataChart(props) {
   return(
-    <AreaChart data={props.data} width={500} height={500}>
+    <AreaChart data={props.data} width={600} height={300}>
       <XAxis dataKey='status'/>
       <YAxis />
       <CartesianGrid strokeDasharray='3 3'/>

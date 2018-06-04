@@ -17,19 +17,30 @@ import './campaigns.css'
 const renderTextField = ({
   input,
   label,
-  meta: { touched, error },
-  ...custom
+  meta: { touched, error }
 }) => (
   <TextField
     margin='normal'
+    style={{width: '100%'}}
     label={label}
     type='string'
+    required
     helperText={touched && error}
-    style={{marginRight: '10px'}}
     {...input}
-    {...custom}
   />
 );
+
+const validate = values => {
+  const errors = {};
+  const requiredFields = [ 'name', 'url' ];
+
+  requiredFields.forEach(field => {
+    if(!values[ field ]) {
+      errors[ field ] = 'Required'
+    }
+  })
+  return errors;
+};
 
 class CampaignForm extends Component { 
   constructor(props) {
@@ -102,7 +113,8 @@ const mapStateToProps = state => ({
 });
 
 const campaignForm = reduxForm({
-  form: 'CampaignForm'
+  form: 'CampaignForm', 
+  validate
 }, null, { newCampaign, loadCampaign })(CampaignForm);
 
 export default connect(mapStateToProps)(campaignForm);

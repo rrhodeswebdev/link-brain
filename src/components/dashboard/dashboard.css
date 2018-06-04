@@ -14,13 +14,19 @@
   color: white;
 }
 
+.data-area {
+  display: flex;
+  flex-direction: column;
+}
+
 .data-card-area {
   display: flex;
   justify-content: space-around;
-  margin-top: 40px;
+  margin: 40px;
 }
 
 .data-graph-area {
   display: flex;
   justify-content: space-around;
+  margin-top: 40px;
 }
