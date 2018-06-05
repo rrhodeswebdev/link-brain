@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { newEntry, editEntry, deleteEntries } from '../../actions/contactActions';
+import { newEntry, editEntry, deleteEntries, activeContactRemove } from '../../actions/contactActions';
 
 import ContactForm from './ContactForm';
 import EnhancedTable from './EnhancedTable';
@@ -22,6 +22,7 @@ class Contacts extends Component {
 
   handleClose = () => {
     this.setState({open: false, edit: false})
+    this.props.activeContactRemove()
   };
 
   createNewEntry(entry) {
@@ -65,4 +66,4 @@ class Contacts extends Component {
     campaign: state.campaigns.campaign
   })
   
-  export default connect(mapStateToProps, { newEntry, editEntry, deleteEntries })(Contacts);
+  export default connect(mapStateToProps, { newEntry, editEntry, deleteEntries, activeContactRemove })(Contacts);

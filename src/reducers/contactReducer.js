@@ -1,10 +1,10 @@
-import { FETCH_ENTRIES, NEW_ENTRY, DELETE_ENTRY, ROW_SELECTED, EDIT_ENTRY, LOAD_ENTRY, FETCH_USER_CONTACTS } from '../actions/types';
+import { FETCH_ENTRIES, NEW_ENTRY, DELETE_ENTRY, EDIT_ENTRY, LOAD_ENTRY, FETCH_USER_CONTACTS, ACTIVE_CONTACT, ACTIVE_CONTACT_REMOVE } from '../actions/types';
 
 const initialState = {
   entries: [],
   usercontacts: [],
   entry: null,
-  selectedRows: []
+  activeContact: null
 }
 
 export default function(state = initialState, action) {
@@ -24,6 +24,16 @@ export default function(state = initialState, action) {
         ...state,
         entries: [...state.entries, action.entry]
       };
+    case ACTIVE_CONTACT: 
+      return {
+        ...state,
+        activeContact: action.entry
+      }
+    case ACTIVE_CONTACT_REMOVE:
+      return {
+        ...state,
+        activeContact: null
+      }
     case DELETE_ENTRY:
       let selectedItems = [...state.entries];
       if(Array.isArray(action.selected)) {
@@ -35,11 +45,6 @@ export default function(state = initialState, action) {
         ...state,
         entries: selectedItems
       };
-    case ROW_SELECTED:
-      return {
-        ...state,
-        selectedRows: action.selectedRows
-      }
     case EDIT_ENTRY:
       let entries = [...state.entries];
       let entryToUpdate = entries.findIndex((e) => {

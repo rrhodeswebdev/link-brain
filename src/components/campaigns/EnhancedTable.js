@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -19,6 +20,8 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
 import Moment from 'react-moment';
+
+import {activeContact} from '../../actions/contactActions';
 
 const columnData = [
   { id: 'name', disablePadding: true, label: 'Name' },
@@ -234,8 +237,8 @@ class EnhancedTable extends React.Component {
   };
 
   handleEditClick = (entry) => {
-    console.log(entry)
-    this.props.handleOpen(entry)
+    this.props.handleOpen(true)
+    this.props.activeContact(entry);
   }
 
   handleChangePage = (event, page) => {
@@ -332,4 +335,10 @@ EnhancedTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(EnhancedTable);
+const mapStateToProps = state => ({
+  activeContact: state.entries.activeContact
+})
+
+const tableStyles = withStyles(styles)(EnhancedTable);
+
+export default connect(mapStateToProps, { activeContact })(tableStyles);

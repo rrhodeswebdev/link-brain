@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, reset } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon'; 
@@ -129,12 +129,12 @@ class ContactsForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  initialValues: state.entries.entry,
+  initialValues: state.entries.activeContact,
   enableReinitialize: true
 });
 
 const entryForm = reduxForm({
   form: 'ContactsForm'
-}, null, { deleteEntries, loadEntry, reset })(ContactsForm);
+}, null, { deleteEntries, loadEntry })(ContactsForm);
 
 export default connect(mapStateToProps)(entryForm);

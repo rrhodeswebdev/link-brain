@@ -1,4 +1,4 @@
-import { FETCH_ENTRIES, NEW_ENTRY, DELETE_ENTRY, ROW_SELECTED, EDIT_ENTRY, LOAD_ENTRY, FETCH_USER_CONTACTS } from './types';
+import { FETCH_ENTRIES, NEW_ENTRY, DELETE_ENTRY, ROW_SELECTED, EDIT_ENTRY, LOAD_ENTRY, FETCH_USER_CONTACTS, ACTIVE_CONTACT, ACTIVE_CONTACT_REMOVE } from './types';
 
 const token = window.localStorage.getItem('token');
 
@@ -88,10 +88,35 @@ export const deleteEntries = (selected) => dispatch => (
   }))
 );
 
-export const editEntry = (entry) => ({
-  type: EDIT_ENTRY,
+export const activeContact = (entry) => ({
+  type: ACTIVE_CONTACT,
   entry
-})
+});
+
+export const activeContactRemove = () => ({
+  type: ACTIVE_CONTACT_REMOVE
+});
+
+export const editEntry = (entry) => dispatch => (
+  fetch(`http://localhost:5000/api/contact/${entry._id}`, {
+    method: 'PUT',
+    body: JSON.stringify(entry),
+    headers: new Headers ({
+      'content-type': 'application/json',
+      'authorization': 'Bearer ' + token
+    })
+  })
+  .then(res => {
+    if(!res.ok) {
+      return Promise.reject(res.statusText);
+    }
+    return res.json();
+  })
+  .then(entry => dispatch({
+    type: EDIT_ENTRY,
+    entry
+  }))
+);
 
 export const loadEntry = (data) => ({
   type: LOAD_ENTRY,

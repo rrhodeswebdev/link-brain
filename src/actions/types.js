@@ -5,6 +5,8 @@ export const DELETE_ENTRY = 'DELETE_ENTRY';
 export const ROW_SELECTED = 'ROW_SELECTED';
 export const EDIT_ENTRY = 'EDIT_ENTRY';
 export const LOAD_ENTRY = 'LOAD_ENTRY';
+export const ACTIVE_CONTACT = 'ACTIVE_CONTACT';
+export const ACTIVE_CONTACT_REMOVE = 'ACTIVE_CONTACT_REMOVE';
 
 export const FETCH_CAMPAIGNS = 'FETCH_CAMPAIGNS';
 export const NEW_CAMPAIGN = 'NEW_CAMPAIGN';
