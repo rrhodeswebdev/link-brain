@@ -7,10 +7,10 @@ function DataCard(props) {
   return(
     <Card style={{width: '300px', textAlign: 'center', margin: '0 20px'}}>
       <CardContent>
-        <Typography variant='headline'>
+        <Typography variant='title'>
           {props.title}
         </Typography>
-        <Typography variant='display2' style={{textAlign: 'center'}}>
+        <Typography variant='display1' style={{textAlign: 'center'}}>
           {props.count}
         </Typography>
       </CardContent>
