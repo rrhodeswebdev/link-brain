@@ -31,6 +31,7 @@ class Contacts extends Component {
 
     if(this.state.edit) {
       this.props.editEntry(entry)
+      console.log(entry)
     } else {
       this.props.newEntry(entry);
     }

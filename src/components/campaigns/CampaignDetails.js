@@ -100,7 +100,7 @@ class CampaignDetails extends Component {
               <div className='campaign-editing-area'>
                 <Button variant='outlined' color='secondary' onClick={this.archivedCampaign}>
                   <Icon style={{fontSize: '1.2em', marginRight: '1em'}} className='fas fa-archive' />
-                  Archive Campaign
+                  {this.props.campaign.archived ? 'Unarchive Campaign' : 'Archive Capaign'}
                 </Button>
               </div>
             </div>

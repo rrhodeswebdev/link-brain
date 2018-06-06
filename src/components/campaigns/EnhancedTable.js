@@ -293,7 +293,7 @@ class EnhancedTable extends React.Component {
                     <TableCell>{n.linkurl}</TableCell>
                     <TableCell>{n.status}</TableCell>
                     <TableCell>{n.notes}</TableCell>
-                    <TableCell><Moment format='MMM DD, YYYY'>{n.lastupdate}</Moment></TableCell>
+                    <TableCell><Moment format='MMM DD, YYYY'>{n.updated}</Moment></TableCell>
                     <TableCell>
                       <Tooltip title="Edit">
                         <IconButton aria-label="Edit">
