@@ -5,33 +5,36 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid } from "recharts";
 function DataChart(props) {
   const data = props.data;
   const week = moment().subtract(7, "d");
-  const weekData = [];
-  const newData = [];
 
-  data.map(item => {
-    if (moment(item.updated) > week) {
-      return weekData.push(item);
-    }
-    return weekData;
-  });
+  const days = {};
 
-  let count = 0;
-  let day;
+  let today = moment();
+  for (let i = 0; i < 7; i++) {
+    days[today.format("ddd D")] = {
+      count: 0,
+      order: 6 - i
+    };
+    today.subtract(1, "days");
+  }
+
+  const weekData = data.filter(item => moment(item.updated) > week);
 
   weekData.forEach(data => {
-    if (moment(data.updated).isSame(data.updated, "day")) {
-      count++;
-      day = moment(data).format("ddd");
+    const day = moment(data.updated).format("ddd D");
+    if (days[day]) {
+      days[day].count++;
+    } else {
+      days[day] = { count: 1 };
     }
-    console.log(count);
-    console.log(day);
-    newData.push({
-      day: moment(data).format("ddd"),
-      count: count
-    });
   });
 
-  console.log(newData);
+  const newData = Object.keys(days)
+    .map(day => ({
+      day: day,
+      count: days[day].count,
+      order: days[day].order
+    }))
+    .sort((a, b) => a.order - b.order);
 
   return (
     <LineChart data={newData} width={500} height={200}>
