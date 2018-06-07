@@ -1,6 +1,14 @@
 import React from "react";
 import moment from "moment";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid } from "recharts";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  ResponsiveContainer
+} from "recharts";
+import Typography from "@material-ui/core/Typography";
 
 function DataChart(props) {
   const data = props.data;
@@ -37,12 +45,26 @@ function DataChart(props) {
     .sort((a, b) => a.order - b.order);
 
   return (
-    <LineChart data={newData} width={500} height={200}>
-      <XAxis dataKey="day" />
-      <YAxis />
-      <CartesianGrid strokeDasharray="3 3" />
-      <Line type="monotone" dataKey="count" stroke="#8884d8" fill="#8884d8" />
-    </LineChart>
+    <div>
+      <Typography variant="title" align="center" style={{ margin: "20px 0" }}>
+        Contacts Added in the Past Week
+      </Typography>
+      <div className="line-chart">
+        <ResponsiveContainer>
+          <LineChart data={newData}>
+            <XAxis dataKey="day" />
+            <YAxis interval="preserveEnd" width={40} />
+            <CartesianGrid strokeDasharray="3 3" />
+            <Line
+              type="monotone"
+              dataKey="count"
+              stroke="#8884d8"
+              fill="#8884d8"
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
   );
 }
 

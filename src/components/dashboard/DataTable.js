@@ -21,38 +21,40 @@ function DataTable(props) {
       <Toolbar>
         <Typography variant="title">Most Recent Contacts</Typography>
       </Toolbar>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell>Email</TableCell>
-            <TableCell>Campaign</TableCell>
-            <TableCell>Website</TableCell>
-            <TableCell>Linking Url</TableCell>
-            <TableCell>Status</TableCell>
-            <TableCell>Notes</TableCell>
-            <TableCell>Last Update</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.slice(0, 5).map(updated => {
-            return (
-              <TableRow key={updated._id}>
-                <TableCell>{updated.name}</TableCell>
-                <TableCell>{updated.email}</TableCell>
-                <TableCell>{updated.campaign.name}</TableCell>
-                <TableCell>{updated.website}</TableCell>
-                <TableCell>{updated.linkurl}</TableCell>
-                <TableCell>{updated.status}</TableCell>
-                <TableCell>{updated.notes}</TableCell>
-                <TableCell>
-                  <Moment format="MMM DD, YYYY">{updated.updated}</Moment>
-                </TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
+      <div style={{ overflowX: "auto" }}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Name</TableCell>
+              <TableCell>Email</TableCell>
+              <TableCell>Campaign</TableCell>
+              <TableCell>Website</TableCell>
+              <TableCell>Linking Url</TableCell>
+              <TableCell>Status</TableCell>
+              <TableCell>Notes</TableCell>
+              <TableCell>Last Update</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.slice(0, 5).map(updated => {
+              return (
+                <TableRow key={updated._id}>
+                  <TableCell>{updated.name}</TableCell>
+                  <TableCell>{updated.email}</TableCell>
+                  <TableCell>{updated.campaign.name}</TableCell>
+                  <TableCell>{updated.website}</TableCell>
+                  <TableCell>{updated.linkurl}</TableCell>
+                  <TableCell>{updated.status}</TableCell>
+                  <TableCell>{updated.notes}</TableCell>
+                  <TableCell>
+                    <Moment format="MMM DD, YYYY">{updated.updated}</Moment>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </div>
     </div>
   );
 }
