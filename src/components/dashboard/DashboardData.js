@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import DataCard from "./DataCard";
 import DataChart from "./DataChart";
 import DataTable from "./DataTable";
+import DataChartLinks from "./DataChartLinks";
 import { fetchCampaigns } from "../../actions/campaignActions";
 import { fetchAllContacts } from "../../actions/contactActions";
 
@@ -42,7 +43,18 @@ class DashboardData extends Component {
     );
     const newContactTable = <DataTable data={this.props.usercontacts} />;
 
-    const totalContacts = <DataChart data={this.props.usercontacts} />;
+    const totalContacts = (
+      <DataChart
+        data={this.props.usercontacts}
+        title="Contacts Added in the Past Week"
+      />
+    );
+    const totalLinks = (
+      <DataChartLinks
+        data={this.props.usercontacts}
+        title="Links Earned in the Past Week"
+      />
+    );
 
     return (
       <div className="data-area">
@@ -54,7 +66,7 @@ class DashboardData extends Component {
         </div>
         <div className="data-graph-area">
           {totalContacts}
-          {totalContacts}
+          {totalLinks}
         </div>
         <div className="data-table-area">{newContactTable}</div>
       </div>

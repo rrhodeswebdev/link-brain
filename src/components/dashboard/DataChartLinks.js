@@ -11,7 +11,7 @@ import {
 } from "recharts";
 import Typography from "@material-ui/core/Typography";
 
-function DataChart(props) {
+function DataChartLinks(props) {
   const data = props.data;
   const week = moment().subtract(7, "d");
 
@@ -27,8 +27,11 @@ function DataChart(props) {
   }
 
   const weekData = data.filter(item => moment(item.updated) > week);
+  const weekDataStatus = weekData.filter(
+    item => item.status === "Link Recieved"
+  );
 
-  weekData.forEach(data => {
+  weekDataStatus.forEach(data => {
     const day = moment(data.updated).format("ddd D");
     if (days[day]) {
       days[day].count++;
@@ -70,4 +73,4 @@ function DataChart(props) {
   );
 }
 
-export default DataChart;
+export default DataChartLinks;
