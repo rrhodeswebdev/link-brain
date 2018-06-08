@@ -1,17 +1,17 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { Provider } from "react-redux";
-import store from "./store";
+import store from "../../store";
 
-import App from "./App";
+import EnhancedTable from "./EnhancedTable";
 import { MuiThemeProvider } from "@material-ui/core";
 
-describe("<App />", () => {
+describe("<EnhancedTable />", () => {
   it("Renders without crashing", () => {
     shallow(
       <Provider store={store}>
         <MuiThemeProvider>
-          <App />
+          <EnhancedTable />
         </MuiThemeProvider>
       </Provider>
     );

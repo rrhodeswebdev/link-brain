@@ -1,17 +1,17 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { Provider } from "react-redux";
-import store from "./store";
+import store from "../../store";
 
-import App from "./App";
+import CampaignForm from "./CampaignForm";
 import { MuiThemeProvider } from "@material-ui/core";
 
-describe("<App />", () => {
+describe("<CampaignForm />", () => {
   it("Renders without crashing", () => {
     shallow(
       <Provider store={store}>
         <MuiThemeProvider>
-          <App />
+          <CampaignForm />
         </MuiThemeProvider>
       </Provider>
     );

@@ -1,17 +1,17 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { Provider } from "react-redux";
-import store from "./store";
+import store from "../../store";
 
-import App from "./App";
+import ContactForm from "./ContactForm";
 import { MuiThemeProvider } from "@material-ui/core";
 
-describe("<App />", () => {
-  it("Renders without crashing", () => {
+describe("<ContactForm />", () => {
+  it("Render a contact area", () => {
     shallow(
       <Provider store={store}>
         <MuiThemeProvider>
-          <App />
+          <ContactForm />
         </MuiThemeProvider>
       </Provider>
     );
