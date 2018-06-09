@@ -17,6 +17,6 @@ describe("<DataTable />", () => {
   };
 
   it("Renders without crashing", () => {
-    shallow(<DataTable data={["test", "test"]} updated={updated} />);
+    shallow(<DataTable data={[updated]} />);
   });
 });
