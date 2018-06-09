@@ -4,7 +4,8 @@ import {
   EDIT_CAMPAIGN,
   ACTIVE_CAMPAIGN,
   LOAD_CAMPAIGN,
-  ARCHIVED_CAMPAIGN
+  ARCHIVED_CAMPAIGN,
+  UNARCHIVE_CAMPAIGN
 } from "./types";
 import { API_BASE_URL } from "../config";
 
@@ -111,6 +112,29 @@ export const archivedCampaign = campaign => dispatch => {
     .then(campaign =>
       dispatch({
         type: ARCHIVED_CAMPAIGN,
+        campaign
+      })
+    );
+};
+
+export const unarchiveCampaign = campaign => dispatch => {
+  fetch(`${API_BASE_URL}/api/campaign/${campaign._id}`, {
+    method: "PUT",
+    body: JSON.stringify(campaign),
+    headers: new Headers({
+      "content-type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("token")}`
+    })
+  })
+    .then(res => {
+      if (!res.ok) {
+        return Promise.reject(res.statusText);
+      }
+      return res.json();
+    })
+    .then(campaign =>
+      dispatch({
+        type: UNARCHIVE_CAMPAIGN,
         campaign
       })
     );
