@@ -8,7 +8,8 @@ export const signInUser = user => dispatch => {
     headers: new Headers({
       "content-type": "application/json",
       "Accept": "application/json, application/xml, text/plain, text/html, *.*"
-    })
+    }),
+    mode: "cors"
   })
     .then(res => {
       if (!res.ok) {
@@ -34,7 +35,8 @@ export const signUpUser = user => dispatch => {
     headers: new Headers({
       "content-type": "application/json",
       "Accept": "application/json, application/xml, text/plain, text/html, *.*"
-    })
+    }),
+    mode: "cors"
   })
     .then(res => res.json())
     .then(res => {
@@ -47,7 +49,8 @@ export const signUpUser = user => dispatch => {
           headers: new Headers({
             "content-type": "application/json",
             "Accept": "application/json, application/xml, text/plain, text/html, *.*"
-          })
+          }),
+          mode: "cors"
         });
       }
     })
