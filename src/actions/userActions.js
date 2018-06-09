@@ -6,7 +6,8 @@ export const signInUser = user => dispatch => {
     method: "POST",
     body: JSON.stringify(user),
     headers: new Headers({
-      "content-type": "application/json"
+      "content-type": "application/json",
+      "Accept": "application/json, application/xml, text/plain, text/html, *.*"
     })
   })
     .then(res => {
@@ -31,7 +32,8 @@ export const signUpUser = user => dispatch => {
     method: "POST",
     body: JSON.stringify(user),
     headers: new Headers({
-      "content-type": "application/json"
+      "content-type": "application/json",
+      "Accept": "application/json, application/xml, text/plain, text/html, *.*"
     })
   })
     .then(res => res.json())
@@ -43,7 +45,8 @@ export const signUpUser = user => dispatch => {
           method: "POST",
           body: JSON.stringify(user),
           headers: new Headers({
-            "content-type": "application/json"
+            "content-type": "application/json",
+            "Accept": "application/json, application/xml, text/plain, text/html, *.*"
           })
         });
       }
