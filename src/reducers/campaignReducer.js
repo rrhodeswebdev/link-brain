@@ -4,7 +4,8 @@ import {
   EDIT_CAMPAIGN,
   ACTIVE_CAMPAIGN,
   LOAD_CAMPAIGN,
-  ARCHIVED_CAMPAIGN
+  ARCHIVED_CAMPAIGN,
+  UNARCHIVE_CAMPAIGN
 } from "../actions/types";
 
 const initialState = {
@@ -48,17 +49,17 @@ export default function(state = initialState, action) {
         archived: [...state.archived, action.campaign],
         campaigns: campaigns
       };
-    // case UNARCHIVE_CAMPAIGN:
-    //   const archived = [...state.archived]
-    //   const index = archived.findIndex(campaign => {
-    //     return campaign._id === action.campaign._id;
-    //   })
-    //   campaigns.splice(index, 1)
-    //   return {
-    //     ...state,
-    //     campaigns: [...state.campaigns, action.campaign],
-    //     archived: archived
-    //   }
+    case UNARCHIVE_CAMPAIGN:
+      const archived = [...state.archived];
+      const archiveIndex = archived.findIndex(campaign => {
+        return campaign._id === action.campaign._id;
+      });
+      archived.splice(archiveIndex, 1);
+      return {
+        ...state,
+        campaigns: [...state.campaigns, action.campaign],
+        archived: archived
+      };
     case LOAD_CAMPAIGN:
       return {
         ...state,

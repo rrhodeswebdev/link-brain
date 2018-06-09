@@ -10,7 +10,11 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 
-import { editCampaign, archivedCampaign } from "../../actions/campaignActions";
+import {
+  editCampaign,
+  archivedCampaign,
+  unarchiveCampaign
+} from "../../actions/campaignActions";
 import CampaignForm from "./CampaignForm";
 
 class CampaignDetails extends Component {
@@ -39,6 +43,10 @@ class CampaignDetails extends Component {
     const archived = !campaign.archived;
 
     campaign.archived = archived;
+
+    if (campaign.archived) {
+      this.props.unarchiveCampaign(campaign);
+    }
 
     this.props.archivedCampaign(campaign);
     this.props.history.push("/dashboard/campaigns");
@@ -120,5 +128,5 @@ class CampaignDetails extends Component {
 
 export default connect(
   null,
-  { editCampaign, archivedCampaign }
+  { editCampaign, archivedCampaign, unarchiveCampaign }
 )(withRouter(CampaignDetails));
