@@ -1,92 +1,76 @@
-import { FETCH_ENTRIES, NEW_ENTRY, DELETE_ENTRY, ROW_SELECTED, EDIT_ENTRY, LOAD_ENTRY } from '../actions/types';
+import {
+  FETCH_ENTRIES,
+  NEW_ENTRY,
+  DELETE_ENTRY,
+  EDIT_ENTRY,
+  LOAD_ENTRY,
+  FETCH_USER_CONTACTS,
+  ACTIVE_CONTACT,
+  ACTIVE_CONTACT_REMOVE
+} from "../actions/types";
 
 const initialState = {
-  entries: [
-    {
-      name: 'Ryan Rhodes',
-      email: 'ryanrhodes@gmail.com',
-      website: 'rrhodesdev.com',
-      linkurl: 'rrhodes.com/blog/funny',
-      campaign: 'Campaign 1',
-      status: 'New Contact',
-      notes: 'This is a simple note that has been added',
-      date: Date.now(),
-      id: 1
-    },
-    {
-      name: 'Alaska John',
-      email: 'akjohn@gmail.com',
-      website: 'alaska.org',
-      linkurl: 'alaska.org/blog/cool-bear-stories',
-      campaign: 'Campaign 6',
-      status: 'Waiting on Response',
-      notes: 'This is a simple note that has been added',
-      date: Date.now(),
-      id: 2
-    },
-    {
-      name: 'Maria Gloss',
-      email: 'rmgloss@outlook.com',
-      website: 'mediaads.com',
-      linkurl: 'mediaads.com/tutorials/',
-      campaign: 'Campaign 4',
-      status: 'Awaiting Response',
-      notes: '',
-      date: Date.now(),
-      id: 3
-    }
-  ],
+  entries: [],
+  usercontacts: [],
   entry: null,
-  selectedRows: []
-}
+  activeContact: null
+};
 
 export default function(state = initialState, action) {
-  switch(action.type) {
-    case FETCH_ENTRIES: 
+  switch (action.type) {
+    case FETCH_ENTRIES:
       return {
-        ...state, 
-        entries: action.payload
+        ...state,
+        entries: action.contacts
+      };
+    case FETCH_USER_CONTACTS:
+      return {
+        ...state,
+        usercontacts: action.contacts
       };
     case NEW_ENTRY:
       return {
         ...state,
         entries: [...state.entries, action.entry]
       };
+    case ACTIVE_CONTACT:
+      return {
+        ...state,
+        activeContact: action.entry
+      };
+    case ACTIVE_CONTACT_REMOVE:
+      return {
+        ...state,
+        activeContact: null
+      };
     case DELETE_ENTRY:
       let selectedItems = [...state.entries];
-      if(state.selectedRows === 'all') {
-        selectedItems = []
-      } else if(Array.isArray(state.selectedRows)) {
+      if (Array.isArray(action.selected)) {
         selectedItems = selectedItems.filter((item, index) => {
-          return !state.selectedRows.includes(index)
-        })
+          return !action.selected.includes(item.id);
+        });
       }
       return {
         ...state,
         entries: selectedItems
       };
-    case ROW_SELECTED:
-      return {
-        ...state,
-        selectedRows: action.selectedRows
-      }
     case EDIT_ENTRY:
       let entries = [...state.entries];
-      let entryToUpdate = entries.findIndex((e) => {
-        return e.id === action.entry.id
-      })
-      entries.splice(entryToUpdate, 1, action.entry)
+      let entryToUpdate = entries.findIndex(e => {
+        return e._id === action.entry._id;
+      });
+      entries.splice(entryToUpdate, 1, action.entry);
       return {
         ...state,
         entries: entries,
         entry: null
-      }
+      };
     case LOAD_ENTRY:
       return {
-        ...state, 
+        ...state,
         entry: action.data
-      }
-    default: 
+      };
+    default:
       return state;
   }
 }

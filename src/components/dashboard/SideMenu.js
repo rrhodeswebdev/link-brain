@@ -7,7 +7,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
 import PublicIcon from '@material-ui/icons/Public';
-import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 
 import './dashboard.css';
 
@@ -29,14 +28,6 @@ function SideMenu() {
           </ListItemIcon>
           <Link to='/dashboard/campaigns' className='side-menu-links'>
             <ListItemText primary='Campaigns' />
-          </Link>
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <TrendingUpIcon />
-          </ListItemIcon>
-          <Link to='/dashboard/reporting' className='side-menu-links'>
-            <ListItemText primary='Reports' />
           </Link>
         </ListItem>
       </List>

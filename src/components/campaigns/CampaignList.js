@@ -22,6 +22,10 @@ class CampaignList extends Component {
       <CampaignListItem {...campaign} key={campaign._id} />
     ));
 
+    const archivedCampaign = this.props.archived.map(campaign => (
+      <CampaignListItem {...campaign} key={campaign._id} />
+    ));
+
     const headerDivider = <Divider style={{ marginLeft: '40px', marginRight: '40px'}} />; 
 
     return(
@@ -40,13 +44,17 @@ class CampaignList extends Component {
         </div>
         <h2 className='campaign-h2'>Archived Campaigns</h2>
         {headerDivider}
+        <div className='campaign-list-group'>
+          {archivedCampaign}
+        </div>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  campaigns: state.campaigns.campaigns
+  campaigns: state.campaigns.campaigns,
+  archived: state.campaigns.archived
 });
 
 export default connect(mapStateToProps, { fetchCampaigns, newCampaign })(CampaignList);

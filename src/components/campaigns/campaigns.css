@@ -18,14 +18,14 @@
   margin: 0 20px;
 }
 
-.campaign-card{
+.campaign-card {
   margin: 40px 20px;
   padding: 40px;
   cursor: pointer;
   width: 300px;
 }
 
-.campaign-boxes-list{
+.campaign-boxes-list {
   display: flex;
 }
 
@@ -34,5 +34,23 @@
 }
 
 .contacts-editing-area {
-  margin: 20px 40px;
+  margin: 10px;
+}
+
+.contacts-area {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 40px;
+}
+
+.campaign-details-panel {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 850px) {
+  .campaign-card {
+    width: 250px;
+  }
 }

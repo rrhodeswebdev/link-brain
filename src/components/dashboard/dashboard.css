@@ -13,3 +13,52 @@
   text-decoration: none;
   color: white;
 }
+
+.data-area {
+  display: flex;
+  flex-direction: column;
+}
+
+.data-card-area {
+  display: flex;
+  justify-content: space-around;
+  margin: 40px;
+}
+
+.data-graph-area {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 40px;
+}
+
+.line-chart {
+  width: 600px;
+  height: 200px;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 850px) {
+  .side-menu {
+    float: none;
+    height: auto;
+    width: 100%;
+  }
+
+  .data-card-area {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+
+  .data-graph-area {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .line-chart {
+    width: 350px;
+    height: 200px;
+    box-sizing: border-box;
+  }
+}

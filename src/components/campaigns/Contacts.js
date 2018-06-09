@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { newEntry, editEntry } from '../../actions/contactActions';
+import { newEntry, editEntry, deleteEntries, activeContactRemove } from '../../actions/contactActions';
 
-import ContactsForm from './ContactForm';
-import ContactTable from './ContactTable';
+import ContactForm from './ContactForm';
+import EnhancedTable from './EnhancedTable';
 
 class Contacts extends Component {
   constructor(props){
@@ -22,6 +22,7 @@ class Contacts extends Component {
 
   handleClose = () => {
     this.setState({open: false, edit: false})
+    this.props.activeContactRemove()
   };
 
   createNewEntry(entry) {
@@ -30,22 +31,29 @@ class Contacts extends Component {
 
     if(this.state.edit) {
       this.props.editEntry(entry)
+      console.log(entry)
     } else {
       this.props.newEntry(entry);
     }
   };
 
+  handleDelete(selected) {
+    this.props.deleteEntries(selected)
+  }
+
   render() {
     return(
       <div>
-        <ContactsForm 
+        <ContactForm 
           onSubmit={values => this.createNewEntry(values)}
           open={this.state.open}
           handleOpen={() => this.handleOpen(false)}
           handleClose={() => this.handleClose()}
           title={this.state.title}
         />
-        <ContactTable
+        <EnhancedTable 
+          contacts={this.props.entries} 
+          handleDelete={(selected) => {this.handleDelete(selected)}} 
           handleOpen={() => this.handleOpen(true)}
         />
       </div>
@@ -55,7 +63,8 @@ class Contacts extends Component {
 
   const mapStateToProps = state => ({
     entries: state.entries.entries,
+    entry: state.entries.entry,
     campaign: state.campaigns.campaign
   })
   
-  export default connect(mapStateToProps, { newEntry, editEntry })(Contacts);
+  export default connect(mapStateToProps, { newEntry, editEntry, deleteEntries, activeContactRemove })(Contacts);
